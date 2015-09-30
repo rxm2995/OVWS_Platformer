@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 	public float maxForce = 3f;
 	public float mass = 1f;
 
-	public float jumpForce = 3f;
+	public float jumpForce = 5f;
 	public float jumpDecayRate = 0.8f;
 	public float minYVelocity = 0.01f;
 
@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 	protected CharacterController charControl;
 
 	private float yVelocity;
+	private bool canAirJump = true;
 
 	// Use this for initialization
 	void Start ()
@@ -40,9 +41,12 @@ public class Player : MonoBehaviour {
 		{
 			velocity.x += maxSpeed;// * Time.deltaTime;
 		}
-		if (onGround && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
+		if ((onGround || canAirJump) && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
 		{
 			yVelocity = jumpForce;
+
+			//This will be changed before the player actually leaves the ground, meaning double jumps should work fine.
+			canAirJump = onGround;
 		}
 
 		//Jump arc handling
