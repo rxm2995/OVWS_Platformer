@@ -10,6 +10,8 @@ public class Player : MonoBehaviour {
 	public float jumpForce = 3f;
 	public float jumpDecayRate = 0.8f;
 	public float minYVelocity = 0.01f;
+
+	public float minYValue = -100;
 	
 	protected bool onGround;
 	protected Vector3 velocity;
@@ -52,6 +54,12 @@ public class Player : MonoBehaviour {
 		}
 		//Normal movement handling
 		onGround = charControl.SimpleMove (velocity);
+
+		if (transform.position.y < minYValue)
+		{
+			//If we're here, the player must have fallen off the screen. Return them to start.
+			transform.position = new Vector3(0, 0, 0);
+		}
 		
 	}
 } 

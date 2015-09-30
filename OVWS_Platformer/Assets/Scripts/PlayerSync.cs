@@ -12,7 +12,10 @@ public class PlayerSync : NetworkBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	
+		if (isLocalPlayer)
+		{
+			gameObject.GetComponentInChildren<Camera>().enabled = true;
+		}
 	}
 	
 	// Update is called once per frame
