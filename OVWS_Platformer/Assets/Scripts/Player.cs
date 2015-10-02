@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
 	public float maxForce = 3f;
 	public float mass = 1f;
 
-	public float jumpForce = 5f;
+	public float jumpForce = 7f;
 	public float jumpDecayRate = 0.8f;
 	public float minYVelocity = 0.01f;
 
@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		canAirJump = onGround || canAirJump;
 		Vector3 velocity = Vector3.zero;
 
 		//Input handling
@@ -50,14 +51,15 @@ public class Player : MonoBehaviour {
 		}
 
 		//Jump arc handling
-		if (yVelocity >= minYVelocity)
-		{
-			yVelocity *= jumpDecayRate;
-			charControl.Move(new Vector3(0, yVelocity, 0));
+		yVelocity *= jumpDecayRate;
 
-		}
 		//Normal movement handling
-		onGround = charControl.SimpleMove (velocity);
+		velocity *= Time.deltaTime;
+		velocity.y = yVelocity;
+		charControl.Move(velocity);
+		onGround = charControl.SimpleMove (Vector3.zero);
+		Debug.Log(canAirJump);
+
 
 		if (transform.position.y < minYValue)
 		{
