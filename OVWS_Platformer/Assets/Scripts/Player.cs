@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
 
 	private float yVelocity;
 	private bool canAirJump = true;
+	private bool rageQuit = false;
 
 	// Use this for initialization
 	void Start ()
@@ -42,6 +43,11 @@ public class Player : MonoBehaviour {
 		{
 			velocity.x += maxSpeed;// * Time.deltaTime;
 		}
+		if(Input.GetKeyDown(KeyCode.K) || rageQuit)
+		{
+			rageQuit = true;
+			velocity.z -= 20;
+		}
 		if ((onGround || canAirJump) && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
 		{
 			yVelocity = jumpForce;
@@ -58,11 +64,13 @@ public class Player : MonoBehaviour {
 		velocity.y = yVelocity;
 		charControl.Move(velocity);
 		onGround = charControl.SimpleMove (Vector3.zero);
-		Debug.Log(canAirJump);
 
+		//Locking movement on Z axis
+		transform.position = new Vector3(transform.position.x, transform.position.y, rageQuit ? transform.position.z : 0);
 
 		if (transform.position.y < minYValue)
 		{
+			rageQuit = false;
 			//If we're here, the player must have fallen off the screen. Return them to start.
 			transform.position = new Vector3(0, 0, 0);
 		}
