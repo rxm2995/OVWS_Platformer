@@ -1,0 +1,109 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 680 (ID=0x1180)
+    Vendor:   NVIDIA
+    VRAM:     1989 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  1.625 seconds
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: Z:\Online Virtual Worlds\OVWS_Platformer\OVWS_Platformer\TestBuild_Data\Managed\System.dll (this message is harmless)
+network simulation allowed only for editor or developer build or in debug mode only
+ 
+(Filename:  Line: 441)
+
+Ready() called with invalid connection object: conn=null
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Must call AddPlayer() with a connection the first time to become ready.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.233635 ms
+Multiple NetworkManagers detected in the scene. Only one NetworkManager can exist at a time. The duplicate NetworkManager will not be used.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 197.
+Total: 0.170382 ms (FindLiveObjects: 0.014222 ms CreateObjectMapping: 0.008817 ms MarkObjects: 0.143075 ms  DeleteObjects: 0.003697 ms)
+
+network simulation allowed only for editor or developer build or in debug mode only
+ 
+(Filename:  Line: 441)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.326542 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 274.
+Total: 0.208497 ms (FindLiveObjects: 0.019911 ms CreateObjectMapping: 0.010524 ms MarkObjects: 0.173226 ms  DeleteObjects: 0.004266 ms)
+
+audhfiadusfhsuiof
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+audhfiadusfhsuiof
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+audhfiadusfhsuiof
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+There is already a player at that playerControllerId for this connections.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+There is already a player at that playerControllerId for this connections.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+There is already a player at that playerControllerId for this connections.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+UnloadTime: 1.646648 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 281.
+Total: 0.306915 ms (FindLiveObjects: 0.022755 ms CreateObjectMapping: 0.010524 ms MarkObjects: 0.267946 ms  DeleteObjects: 0.005404 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.543857 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 281.
+Total: 0.192000 ms (FindLiveObjects: 0.009102 ms CreateObjectMapping: 0.007111 ms MarkObjects: 0.170951 ms  DeleteObjects: 0.004551 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.394808 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 292.
+Total: 0.162702 ms (FindLiveObjects: 0.011946 ms CreateObjectMapping: 0.009955 ms MarkObjects: 0.136533 ms  DeleteObjects: 0.003982 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.430364 ms
+Multiple NetworkManagers detected in the scene. Only one NetworkManager can exist at a time. The duplicate NetworkManager will not be used.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 65)
+
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 198.
+Total: 0.191715 ms (FindLiveObjects: 0.008248 ms CreateObjectMapping: 0.010524 ms MarkObjects: 0.169244 ms  DeleteObjects: 0.002844 ms)
+
