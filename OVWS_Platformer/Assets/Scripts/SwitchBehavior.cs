@@ -48,4 +48,10 @@ public class SwitchBehavior : MonoBehaviour {
 		puzzleSolved = true;
 		solveIndicator.color = solvedColor;
 	}
+
+	public void unSolvePuzzle()
+	{
+		puzzleSolved = false;
+		solveIndicator.color = inactiveColor;
+	}
 }
