@@ -3,7 +3,6 @@ using System.Collections;
 
 public class AcrobatPlayer : Player
 {
-	public float sprintModifier = 2.0f;
 	private bool canAirJump = true;
 
 	public override void Start()
@@ -25,15 +24,6 @@ public class AcrobatPlayer : Player
 		{
 			yVelocity = jumpForce/jumpDecayRate;
 			canAirJump = false;
-		}
-
-		if(Input.GetKeyDown(KeyCode.LeftShift))
-		{
-			maxSpeed *= sprintModifier;
-		}
-		if(Input.GetKeyUp(KeyCode.LeftShift))
-		{
-			maxSpeed /= sprintModifier;
 		}
 		
 		base.Update();

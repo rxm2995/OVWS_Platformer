@@ -4,29 +4,38 @@ using UnityEngine.Networking;
 
 public class LevelEnd : NetworkBehaviour
 {
+	public string nextLevel;
+
 	NetworkManager netManager;
-	int count;
+	int playersAtEnd;
 	GameObject[] playerReferences;
 
 	void Start () {
-		count = 0;
+		playersAtEnd = 0;
 		playerReferences = GameObject.FindGameObjectsWithTag ("Player");
 		netManager = GameObject.FindGameObjectWithTag("NetManager").GetComponent<NetworkManager>();
 	}
 
 	void Update () {
 		// activates new scene when all players gather on this object
-		if (count == 1) {
+		if (playersAtEnd == 2)
+		{
 			Debug.Log("audhfiadusfhsuiof");
 			//Application.LoadLevel(1);
-			netManager.ServerChangeScene("testScene2");
+			netManager.ServerChangeScene(nextLevel);
 		}
 	}
 
 	void OnTriggerEnter(Collider other) {
-		count++;
+		if(other.gameObject.CompareTag("Player"))
+		{
+			playersAtEnd++;
+		}
 	}
 	void OnTriggerExit(Collider other) {
-		count--;
+		if(other.gameObject.CompareTag("Player"))
+		{
+			playersAtEnd--;
+		}
 	}
 }
