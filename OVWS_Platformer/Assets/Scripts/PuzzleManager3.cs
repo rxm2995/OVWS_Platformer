@@ -23,6 +23,8 @@ public class PuzzleManager3 : MonoBehaviour
 		{
 			puzzleSolved = true;
 			switchOneBehavior.solvePuzzle();
+			RigidbodyConstraints freeY = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+			dynamicPlatform.GetComponent<Rigidbody>().constraints = freeY;
 			dynamicPlatform.transform.position = new Vector3(dynamicPlatform.transform.position.x,
 			                                                 2,
 			                                                 0);
