@@ -2,7 +2,13 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	
+	[SerializeField]
+	protected Camera localCam;
+	[SerializeField]
+	protected float maxFOV;
+	[SerializeField]
+	protected float minFOV;
+
 	public float maxSpeed = 6f;
 	public float maxForce = 3f;
 	public float mass = 1f;
@@ -49,10 +55,22 @@ public class Player : MonoBehaviour {
 		{
 			yVelocity = jumpForce;
 		}
-		
+
 		//Jump arc handling
 		yVelocity *= jumpDecayRate;
-		
+
+		//Camera zoom based on speed, done before delta time scaling
+		//Debug.Log ("Vel Y: " + Mathf.Floor(charControl.velocity.y));
+		//Debug.Log ("Vel X: " + velocity.x);
+		//Debug.Log (Mathf.Floor(Mathf.Sqrt((velocity.x * velocity.x) + (charControl.velocity.y * charControl.velocity.y))));
+		float velMag = Mathf.Sqrt((velocity.x * velocity.x) + (charControl.velocity.y * charControl.velocity.y));
+		if(velMag > 0 && velMag > 10) localCam.fieldOfView += .6f;
+		else localCam.fieldOfView -= .6f;
+		//if(velMag > 0 && localCam.fieldOfView > velMag*10) localCam.fieldOfView = velMag*10;
+		if(localCam.fieldOfView > maxFOV) localCam.fieldOfView = maxFOV;
+		else if(localCam.fieldOfView < minFOV) localCam.fieldOfView = minFOV;
+		//
+
 		//Normal movement handling
 		velocity *= Time.deltaTime;
 		velocity.y = yVelocity;
@@ -68,6 +86,5 @@ public class Player : MonoBehaviour {
 			//If we're here, the player must have fallen off the screen. Return them to start.
 			transform.position = new Vector3(0, 0, 0);
 		}
-		
 	}
 } 
