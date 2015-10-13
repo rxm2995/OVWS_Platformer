@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 
 public class LevelEnd : NetworkBehaviour
 {
+	public Light triggerLight;
 	public string nextLevel;
 
 	NetworkManager netManager;
@@ -27,12 +28,14 @@ public class LevelEnd : NetworkBehaviour
 	}
 
 	void OnTriggerEnter(Collider other) {
+		triggerLight.intensity = 4;
 		if(other.gameObject.CompareTag("Player"))
 		{
 			playersAtEnd++;
 		}
 	}
 	void OnTriggerExit(Collider other) {
+		triggerLight.intensity = 2;
 		if(other.gameObject.CompareTag("Player"))
 		{
 			playersAtEnd--;
