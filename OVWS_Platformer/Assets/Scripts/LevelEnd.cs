@@ -9,11 +9,10 @@ public class LevelEnd : NetworkBehaviour
 
 	NetworkManager netManager;
 	int playersAtEnd;
-	GameObject[] playerReferences;
 
-	void Start () {
+	void Start ()
+	{
 		playersAtEnd = 0;
-		playerReferences = GameObject.FindGameObjectsWithTag ("Player");
 		netManager = GameObject.FindGameObjectWithTag("NetManager").GetComponent<NetworkManager>();
 	}
 
@@ -21,7 +20,6 @@ public class LevelEnd : NetworkBehaviour
 		// activates new scene when all players gather on this object
 		if (playersAtEnd == 2)
 		{
-			Debug.Log("audhfiadusfhsuiof");
 			//Application.LoadLevel(1);
 			netManager.ServerChangeScene(nextLevel);
 		}
