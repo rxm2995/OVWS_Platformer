@@ -8,7 +8,6 @@ public class PlayerSync : NetworkBehaviour
 
 	[SyncVar]
 	private Vector3 syncPos;
-
 	// Use this for initialization
 	void Start ()
 	{
@@ -38,7 +37,7 @@ public class PlayerSync : NetworkBehaviour
 	[Client]
 	void TransmitPosition()
 	{
-		if (isLocalPlayer && (transform.position-syncPos).magnitude >= minDeltaBeforePosSync)
+		if (isLocalPlayer && (transform.position-syncPos).sqrMagnitude >= minDeltaBeforePosSync*minDeltaBeforePosSync)
 		{
 			CmdSyncPosition(transform.position);
 		}
