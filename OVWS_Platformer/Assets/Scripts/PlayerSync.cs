@@ -6,11 +6,14 @@ public class PlayerSync : NetworkBehaviour
 {
 	public float minDeltaBeforePosSync = 0.1f;
 
+	private float lerpRate;
+
 	[SyncVar]
 	private Vector3 syncPos;
 	// Use this for initialization
 	void Start ()
 	{
+		lerpRate = 100;
 		if (isLocalPlayer)
 		{
 			gameObject.GetComponentInChildren<Camera>().enabled = true;
@@ -22,6 +25,7 @@ public class PlayerSync : NetworkBehaviour
 	{
 		if (!isLocalPlayer)
 		{
+			LerpPosition ();
 			transform.position = syncPos;
 		}
 	}
@@ -47,5 +51,11 @@ public class PlayerSync : NetworkBehaviour
 	void CmdSyncPosition(Vector3 posToTransmit)
 	{
 		syncPos = posToTransmit;
+	}
+
+	void LerpPosition ()
+	{
+		transform.position = Vector3.Lerp (transform.position, syncPos, Time.deltaTime * lerpRate);
+		
 	}
 }
