@@ -54,11 +54,13 @@ public class Player : MonoBehaviour {
 		if (onGround && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
 		{
 			yVelocity = jumpForce;
+
 		}
 
 		//Jump arc handling
 		yVelocity *= jumpDecayRate;
 
+		Debug.Log(Mathf.Round(yVelocity));
 		//Camera zoom based on speed, done before delta time scaling
 		//Debug.Log ("Vel Y: " + Mathf.Floor(charControl.velocity.y));
 		//Debug.Log ("Vel X: " + velocity.x);

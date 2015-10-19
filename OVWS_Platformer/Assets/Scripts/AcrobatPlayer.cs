@@ -55,7 +55,7 @@ public class AcrobatPlayer : Player
 	{
 		Vector3 hit = col.normal;
 		float angle = Vector3.Angle (hit, Vector3.up);
-		if(Mathf.Approximately(angle, 90) || Mathf.Approximately(angle, 270)) 
+		if((angle > 85f && angle < 95f) ||  (angle > 265f && angle < 275f)) 
 		{
 			Debug.Log("Wall Collision");
 			onWall = true;
