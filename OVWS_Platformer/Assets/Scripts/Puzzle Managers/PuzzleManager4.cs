@@ -31,7 +31,6 @@ public class PuzzleManager4 : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log (floorBehavior.activated);
 		dropFloor.GetComponent<BoxCollider> ().enabled = floorBehavior.activated;
 		dropFloor.GetComponent<MeshRenderer> ().enabled = floorBehavior.activated;
 

@@ -11,12 +11,22 @@ public class PlayerSync : NetworkBehaviour
 	[SyncVar]
 	private Vector3 syncPos;
 	// Use this for initialization
+
+	[SyncVar]
+	private int testVariablePleaseIgnore;
+
 	void Start ()
 	{
+		testVariablePleaseIgnore = 0;
 		lerpRate = 100;
 		if (isLocalPlayer)
 		{
 			gameObject.GetComponentInChildren<Camera>().enabled = true;
+		}
+		else
+		{
+			gameObject.GetComponent<AcrobatPlayer>().enabled = false;
+			gameObject.GetComponent<StrongPlayer>().enabled = false;
 		}
 	}
 	
@@ -27,6 +37,20 @@ public class PlayerSync : NetworkBehaviour
 		{
 			LerpPosition ();
 			transform.position = syncPos;
+			if(testVariablePleaseIgnore == 1)
+			{
+				GameObject p1 = GameObject.FindGameObjectsWithTag("Player")[0];
+				p1.transform.parent = gameObject.transform;
+				p1.transform.localPosition = new Vector3(0, 1.1f, 0);
+				p1.GetComponent<CharacterController>().enabled = false;
+				testVariablePleaseIgnore = 0;
+			}
+			else if(testVariablePleaseIgnore == -1)
+			{
+				GameObject p1 = GameObject.FindGameObjectsWithTag("Player")[0];
+				p1.transform.parent = null;
+				testVariablePleaseIgnore = 0;
+			}
 		}
 	}
 
@@ -57,5 +81,11 @@ public class PlayerSync : NetworkBehaviour
 	{
 		transform.position = Vector3.Lerp (transform.position, syncPos, Time.deltaTime * lerpRate);
 		
+	}
+
+	[Command]
+	public void CmdSetTestVar(int val)
+	{
+		testVariablePleaseIgnore = val;
 	}
 }
