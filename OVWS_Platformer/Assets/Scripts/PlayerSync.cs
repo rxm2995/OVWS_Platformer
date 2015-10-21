@@ -49,6 +49,7 @@ public class PlayerSync : NetworkBehaviour
 			{
 				GameObject p1 = GameObject.FindGameObjectsWithTag("Player")[0];
 				p1.transform.parent = null;
+				p1.GetComponent<CharacterController>().enabled = true;
 				testVariablePleaseIgnore = 0;
 			}
 		}
