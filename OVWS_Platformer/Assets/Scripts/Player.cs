@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class Player : MonoBehaviour {
+public class Player : NetworkBehaviour {
 	[SerializeField]
 	protected Camera localCam;
 	[SerializeField]
@@ -60,7 +61,7 @@ public class Player : MonoBehaviour {
 		//Jump arc handling
 		yVelocity *= jumpDecayRate;
 
-		Debug.Log(Mathf.Round(yVelocity));
+		//Debug.Log(Mathf.Round(yVelocity));
 		//Camera zoom based on speed, done before delta time scaling
 		//Debug.Log ("Vel Y: " + Mathf.Floor(charControl.velocity.y));
 		//Debug.Log ("Vel X: " + velocity.x);

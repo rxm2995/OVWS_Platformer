@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public class AcrobatPlayer : Player
 {
@@ -10,13 +11,19 @@ public class AcrobatPlayer : Player
 
 	public override void Start()
 	{
-		//First player in gets Acrobat, everyone after gets Strong.
-		if(GameObject.FindGameObjectsWithTag("Player").Length > 1)
-		{
-			gameObject.GetComponent<StrongPlayer>().enabled = true;
-			enabled = false;
+		// BUGFIX - this prevents the client from seeing host wrongly as a strongman
+		if (isLocalPlayer) {
+			//Debug.Log("isLocalPlayer = true, checking if arraylength > 1");
+
+			//First player in gets Acrobat, everyone after gets Strong.
+			if(GameObject.FindGameObjectsWithTag("Player").Length > 1)
+			{
+				gameObject.GetComponent<StrongPlayer>().enabled = true;
+				enabled = false;
+			}
 		}
 		base.Start ();
+		//Debug.Log ("Player Array Length: " + GameObject.FindGameObjectsWithTag ("Player").Length + ", isLocalPlayer: " + isLocalPlayer.ToString());
 	}
 	
 	// Update is called once per frame
