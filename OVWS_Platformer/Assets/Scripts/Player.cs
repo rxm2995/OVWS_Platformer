@@ -55,7 +55,6 @@ public class Player : MonoBehaviour {
 		if (onGround && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
 		{
 			yVelocity = jumpForce;
-
 		}
 
 		//Jump arc handling

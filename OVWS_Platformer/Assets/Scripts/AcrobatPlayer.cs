@@ -8,6 +8,7 @@ public class AcrobatPlayer : Player
 	private bool canWallJump = true;
 	private bool onWall = false;
 	private float timer;
+	private Vector3 oldPos;
 
 	public override void Start()
 	{
@@ -40,16 +41,20 @@ public class AcrobatPlayer : Player
 			{
 				Debug.Log("Wall Jumped");
 				yVelocity = jumpForce/jumpDecayRate;
+				transform.position = oldPos;
 				canWallJump = false;
 				onWall = false;
 			}
 			else if (canAirJump && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
 			{
+				Debug.Log("Air Jumped");
 				yVelocity = jumpForce/jumpDecayRate;
+				transform.position = oldPos;
 				canAirJump = false;
 			}	
 		}
 		timer += Time.deltaTime;
+		oldPos = transform.position;
 		base.Update();
 	}
 
