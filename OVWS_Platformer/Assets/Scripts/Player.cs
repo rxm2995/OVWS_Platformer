@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
 	protected Vector3 acceleration;
 	protected CharacterController charControl;
 	
-	protected float yVelocity;
+	protected Vector3 persistentVelocity;
 	private bool rageQuit = false;
 	
 	// Use this for initialization
@@ -54,13 +54,12 @@ public class Player : MonoBehaviour {
 		}
 		if (onGround && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
 		{
-			yVelocity = jumpForce;
+			persistentVelocity.y = jumpForce;
 		}
 
 		//Jump arc handling
-		yVelocity *= jumpDecayRate;
+		persistentVelocity *= jumpDecayRate;
 
-		//Debug.Log(Mathf.Round(yVelocity));
 		//Camera zoom based on speed, done before delta time scaling
 		//Debug.Log ("Vel Y: " + Mathf.Floor(charControl.velocity.y));
 		//Debug.Log ("Vel X: " + velocity.x);
@@ -75,7 +74,7 @@ public class Player : MonoBehaviour {
 
 		//Normal movement handling
 		velocity *= Time.deltaTime;
-		velocity.y = yVelocity;
+		velocity += persistentVelocity;
 		charControl.Move(velocity);
 		onGround = charControl.SimpleMove (Vector3.zero);
 		

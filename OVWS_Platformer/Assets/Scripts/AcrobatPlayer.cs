@@ -25,37 +25,49 @@ public class AcrobatPlayer : Player
 	// Update is called once per frame
 	public override void Update ()
 	{
-		canAirJump = onGround || canAirJump;
-		if(onGround) canWallJump = true;
-//		Debug.Log (charControl.collisionFlags);
-//		if((charControl.collisionFlags & CollisionFlags.Sides) != 0)
-//		{
-//			Debug.Log("Test");
-//			canWallJump = true;
-//		}
-		//Debug.Log("OnWall: "  + onWall);
-		//Debug.Log("CanWallJump: " + canWallJump);
-		if(!onGround)
+		if(charControl.enabled)
 		{
-			if (onWall && canWallJump && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
+			//Can move under own free will
+
+			canAirJump = onGround || canAirJump;
+			if(onGround) canWallJump = true;
+			//		Debug.Log (charControl.collisionFlags);
+			//		if((charControl.collisionFlags & CollisionFlags.Sides) != 0)
+			//		{
+			//			Debug.Log("Test");
+			//			canWallJump = true;
+			//		}
+			//Debug.Log("OnWall: "  + onWall);
+			//Debug.Log("CanWallJump: " + canWallJump);
+			if(!onGround)
 			{
-				Debug.Log("Wall Jumped");
-				yVelocity = jumpForce/jumpDecayRate;
-				transform.position = oldPos;
-				canWallJump = false;
-				onWall = false;
+				if (onWall && canWallJump && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
+				{
+					Debug.Log("Wall Jumped");
+					persistentVelocity.y = jumpForce/jumpDecayRate;
+					transform.position = oldPos;
+					canWallJump = false;
+					onWall = false;
+				}
+				else if (canAirJump && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
+				{
+					Debug.Log("Air Jumped");
+					persistentVelocity.y = jumpForce/jumpDecayRate;
+					transform.position = oldPos;
+					canAirJump = false;
+				}	
 			}
-			else if (canAirJump && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
-			{
-				Debug.Log("Air Jumped");
-				yVelocity = jumpForce/jumpDecayRate;
-				transform.position = oldPos;
-				canAirJump = false;
-			}	
+			timer += Time.deltaTime;
+			base.Update();
 		}
-		timer += Time.deltaTime;
+		else
+		{
+			//Being held
+			persistentVelocity = (transform.position-oldPos)/Time.deltaTime;
+		}
+		
 		oldPos = transform.position;
-		base.Update();
+
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit col)

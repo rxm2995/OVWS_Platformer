@@ -13,11 +13,11 @@ public class PlayerSync : NetworkBehaviour
 	// Use this for initialization
 
 	[SyncVar]
-	private int testVariablePleaseIgnore;
+	private bool holdStateNeedsUpdating;
 
 	void Start ()
 	{
-		testVariablePleaseIgnore = 0;
+		holdStateNeedsUpdating = false;
 		lerpRate = 100;
 		if (isLocalPlayer)
 		{
@@ -35,22 +35,25 @@ public class PlayerSync : NetworkBehaviour
 	{
 		if (!isLocalPlayer)
 		{
-			LerpPosition ();
+			//LerpPosition ();
 			transform.position = syncPos;
-			if(testVariablePleaseIgnore == 1)
+			
+			if(holdStateNeedsUpdating)
 			{
 				GameObject p1 = GameObject.FindGameObjectsWithTag("Player")[0];
-				p1.transform.parent = gameObject.transform;
-				p1.transform.localPosition = new Vector3(0, 1.1f, 0);
-				p1.GetComponent<CharacterController>().enabled = false;
-				testVariablePleaseIgnore = 0;
-			}
-			else if(testVariablePleaseIgnore == -1)
-			{
-				GameObject p1 = GameObject.FindGameObjectsWithTag("Player")[0];
-				p1.transform.parent = null;
-				p1.GetComponent<CharacterController>().enabled = true;
-				testVariablePleaseIgnore = 0;
+				if(p1.transform.parent == null)
+				{
+					p1.transform.parent = gameObject.transform;
+					p1.transform.localPosition = new Vector3(0, 1.1f, 0);
+					p1.GetComponent<CharacterController>().enabled = false;
+				}
+				else
+				{
+					p1.transform.parent = null;
+					p1.GetComponent<CharacterController>().enabled = true;
+				}
+				
+				holdStateNeedsUpdating = false;
 			}
 		}
 	}
@@ -84,9 +87,18 @@ public class PlayerSync : NetworkBehaviour
 		
 	}
 
-	[Command]
-	public void CmdSetTestVar(int val)
+	public void TestFunctionPleaseIgnore()
 	{
-		testVariablePleaseIgnore = val;
+		
+		CmdToggleHold();
+		//Change this if p1 ever gets the ability to break out of a hold themselves!
+		CharacterController p1Control = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<CharacterController>();
+		p1Control.enabled = !p1Control.enabled;
+	}
+	
+	[Command]
+	void CmdToggleHold()
+	{
+		holdStateNeedsUpdating = true;
 	}
 }
