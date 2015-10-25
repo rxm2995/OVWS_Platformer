@@ -58,16 +58,15 @@ public class AcrobatPlayer : Player
 				}	
 			}
 			timer += Time.deltaTime;
+			oldPos = transform.position;
 			base.Update();
 		}
 		else
 		{
 			//Being held
-			persistentVelocity = (transform.position-oldPos)/Time.deltaTime;
+			persistentVelocity = (transform.position-oldPos)/(Time.deltaTime*5);
+			oldPos = transform.position;
 		}
-		
-		oldPos = transform.position;
-
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit col)
@@ -76,7 +75,7 @@ public class AcrobatPlayer : Player
 		float angle = Vector3.Angle (hit, Vector3.up);
 		if((angle > 85f && angle < 95f) ||  (angle > 265f && angle < 275f)) 
 		{
-			Debug.Log("Wall Collision");
+			//Debug.Log("Wall Collision");
 			onWall = true;
 			timer = 0;
 		}

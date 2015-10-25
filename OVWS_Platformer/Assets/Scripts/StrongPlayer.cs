@@ -5,18 +5,24 @@ using UnityEngine.Networking;
 public class StrongPlayer : Player
 {
 	public float sprintModifier = 2.0f;
-
+	[SerializeField]
+	private TrailRenderer trail;
 	// Update is called once per frame
 	public override void Update ()
 	{
 		
 		if(Input.GetKeyDown(KeyCode.LeftShift))
 		{
+			trail.enabled = true;
 			maxSpeed *= sprintModifier;
+			gameObject.GetComponent<PlayerSync>().CmdToggleTrail();
+
 		}
 		if(Input.GetKeyUp(KeyCode.LeftShift))
 		{
+			trail.enabled = false;
 			maxSpeed /= sprintModifier;
+			gameObject.GetComponent<PlayerSync>().CmdToggleTrail();
 		}
 		if(Input.GetKeyDown(KeyCode.Z))
 		{

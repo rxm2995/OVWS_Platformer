@@ -15,12 +15,16 @@ public class PlayerSync : NetworkBehaviour
 	[SyncVar]
 	private bool holdStateNeedsUpdating;
 
+	[SerializeField]
+	private TrailRenderer tr;
+
 	void Start ()
 	{
 		holdStateNeedsUpdating = false;
 		lerpRate = 100;
 		if (isLocalPlayer)
 		{
+
 			gameObject.GetComponentInChildren<Camera>().enabled = true;
 		}
 		else
@@ -100,5 +104,11 @@ public class PlayerSync : NetworkBehaviour
 	void CmdToggleHold()
 	{
 		holdStateNeedsUpdating = true;
+	}
+
+	[Command]
+	public void CmdToggleTrail()
+	{
+		tr.enabled = !tr.enabled;
 	}
 }
