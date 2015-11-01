@@ -24,7 +24,7 @@ public class StrongPlayer : Player
 			maxSpeed /= sprintModifier;
 			gameObject.GetComponent<PlayerSync>().CmdToggleTrail();
 		}
-		if(Input.GetKeyDown(KeyCode.Z))
+		if(Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.E))
 		{
 			GameObject p1 = GameObject.FindGameObjectsWithTag("Player")[0];
 			if((p1.transform.position-transform.position).sqrMagnitude < 9)
