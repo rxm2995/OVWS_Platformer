@@ -7,6 +7,7 @@ public class AcrobatPlayer : Player
 	private bool canAirJump = true;
 	private bool canWallJump = true;
 	private bool onWall = false;
+	private int wallDir = 0;
 	private float timer;
 	private Vector3 oldPos;
 
@@ -45,9 +46,11 @@ public class AcrobatPlayer : Player
 				{
 					Debug.Log("Wall Jumped");
 					persistentVelocity.y = jumpForce/jumpDecayRate;
+					persistentVelocity.x = (wallDir* jumpForce)/(jumpDecayRate * 2);
 					transform.position = oldPos;
 					canWallJump = false;
 					onWall = false;
+					wallDir = 0;
 				}
 				else if (canAirJump && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
 				{
@@ -73,14 +76,27 @@ public class AcrobatPlayer : Player
 	{
 		Vector3 hit = col.normal;
 		float angle = Vector3.Angle (hit, Vector3.up);
-		if((angle > 85f && angle < 95f) ||  (angle > 265f && angle < 275f)) 
+		if((angle > 85f && angle < 95f))
 		{
-			//Debug.Log("Wall Collision");
+			if(col.gameObject.transform.position.x < this.transform.position.x)
+			{
+				wallDir = 1;
+			}
+			else
+			{
+				wallDir = -1;
+			}
 			onWall = true;
 			timer = 0;
 		}
+		//else if((angle > 265f && angle < 275f))
+		//{
+		//	wallDir = 1;
+		//	onWall = true;
+		//}
 		if(timer > .1f)
 		{
+			wallDir = 0;
 			onWall = false;
 		}
 		//else onWall = false;
