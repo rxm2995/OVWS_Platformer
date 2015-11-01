@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Networking;
 
 public class PlayerSync : NetworkBehaviour
 {
 	public float minDeltaBeforePosSync = 0.1f;
+	private float minDistBeforeListPurge = 0.01f;
 
 	private float lerpRate;
 
-	[SyncVar]
+	private List<Vector3> syncPosList = new List<Vector3>();
+
+	[SyncVar (hook = "zimbabwe")]
 	private Vector3 syncPos;
 	// Use this for initialization
 
@@ -21,7 +25,7 @@ public class PlayerSync : NetworkBehaviour
 	void Start ()
 	{
 		holdStateNeedsUpdating = false;
-		lerpRate = 100;
+		lerpRate = 36;
 		if (isLocalPlayer)
 		{
 
@@ -39,8 +43,8 @@ public class PlayerSync : NetworkBehaviour
 	{
 		if (!isLocalPlayer)
 		{
-			//LerpPosition ();
-			transform.position = syncPos;
+			LerpPosition ();
+			//transform.position = syncPos;
 			
 			if(holdStateNeedsUpdating)
 			{
@@ -77,6 +81,7 @@ public class PlayerSync : NetworkBehaviour
 		{
 			CmdSyncPosition(transform.position);
 		}
+//		else if(!isLocalPlayer && syncPosList.
 	}
 
 	[Command]
@@ -85,9 +90,32 @@ public class PlayerSync : NetworkBehaviour
 		syncPos = posToTransmit;
 	}
 
+	[Client]
+	void zimbabwe(Vector3 bepis)
+	{
+		syncPos = bepis;
+		syncPosList.Add(syncPos);
+	}
+
 	void LerpPosition ()
 	{
-		transform.position = Vector3.Lerp (transform.position, syncPos, Time.deltaTime * lerpRate);
+		if (syncPosList.Count > 0)
+		{
+			transform.position = Vector3.Lerp (transform.position, syncPosList [0], 
+			                                   Time.deltaTime * lerpRate);
+			//if we're getting really close to that point, delete it
+			if (Vector3.Distance (transform.position, syncPosList [0]) < minDistBeforeListPurge)
+			{
+				syncPosList.RemoveAt (0);
+			}
+			
+			// if we don't have so many in the list, lerp faster
+//			if (syncPosList.Count > 10) {
+//				lerpRate = fasterLerpRate;
+//			} else {
+//				lerpRate = normalLerpRate;
+//			}
+		}
 		
 	}
 
