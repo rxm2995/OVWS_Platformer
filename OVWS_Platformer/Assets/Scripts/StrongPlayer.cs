@@ -13,14 +13,14 @@ public class StrongPlayer : Player
 		
 		if(Input.GetKeyDown(KeyCode.LeftShift))
 		{
-			trail.enabled = true;
+			trail.time = 1.5f;
 			maxSpeed *= sprintModifier;
 			gameObject.GetComponent<PlayerSync>().CmdToggleTrail();
 
 		}
 		if(Input.GetKeyUp(KeyCode.LeftShift))
 		{
-			trail.enabled = false;
+			trail.time = 0;
 			maxSpeed /= sprintModifier;
 			gameObject.GetComponent<PlayerSync>().CmdToggleTrail();
 		}

@@ -24,11 +24,11 @@ public class PlayerSync : NetworkBehaviour
 
 	void Start ()
 	{
+		tr.enabled = true;
 		holdStateNeedsUpdating = false;
-		lerpRate = 36;
+		lerpRate = 100;
 		if (isLocalPlayer)
 		{
-
 			gameObject.GetComponentInChildren<Camera>().enabled = true;
 		}
 		else
@@ -137,6 +137,13 @@ public class PlayerSync : NetworkBehaviour
 	[Command]
 	public void CmdToggleTrail()
 	{
-		tr.enabled = !tr.enabled;
+		if(tr.time == 0)
+		{
+			tr.time = 1.5f;
+		}
+		else
+		{
+			tr.time = 0;
+		}
 	}
 }

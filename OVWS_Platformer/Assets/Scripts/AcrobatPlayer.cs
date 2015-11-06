@@ -46,7 +46,7 @@ public class AcrobatPlayer : Player
 				{
 					Debug.Log("Wall Jumped");
 					persistentVelocity.y = jumpForce/jumpDecayRate;
-					persistentVelocity.x = (wallDir* jumpForce)/(jumpDecayRate * 2);
+					persistentVelocity.x = (1.4f * wallDir * jumpForce)/(jumpDecayRate * 2);
 					transform.position = oldPos;
 					canWallJump = false;
 					onWall = false;
