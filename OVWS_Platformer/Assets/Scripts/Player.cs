@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
 	protected float maxFOV;
 	[SerializeField]
 	protected float minFOV;
+	[SerializeField]
+	private PlayerSync sync;
 
 	public float maxSpeed = 6f;
 	public float maxForce = 3f;
@@ -36,6 +38,8 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	public virtual void Update ()
 	{
+		Vector3 firstPos = transform.position;
+
 		Vector3 velocity = Vector3.zero;
 		
 		//Input handling
@@ -87,5 +91,7 @@ public class Player : MonoBehaviour {
 			//If we're here, the player must have fallen off the screen. Return them to start.
 			transform.position = new Vector3(0, 0, 0);
 		}
+
+		sync.localVelocity = (transform.position-firstPos)/Time.deltaTime;
 	}
 } 

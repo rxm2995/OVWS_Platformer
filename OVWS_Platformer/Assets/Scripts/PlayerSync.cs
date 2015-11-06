@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class PlayerSync : NetworkBehaviour
 {
+	public Vector3 localVelocity;
+
 	public float minDeltaBeforePosSync = 0.1f;
 	private float minDistBeforeListPurge = 0.01f;
 
@@ -12,9 +14,12 @@ public class PlayerSync : NetworkBehaviour
 
 	private List<Vector3> syncPosList = new List<Vector3>();
 
-	[SyncVar (hook = "zimbabwe")]
+	[SyncVar (hook = "jelloPuddingPops")]
 	private Vector3 syncPos;
 	// Use this for initialization
+
+	[SyncVar]
+	private Vector3 syncVel;
 
 	[SyncVar]
 	private bool holdStateNeedsUpdating;
@@ -43,8 +48,9 @@ public class PlayerSync : NetworkBehaviour
 	{
 		if (!isLocalPlayer)
 		{
-			LerpPosition ();
+			//LerpPosition ();
 			//transform.position = syncPos;
+			transform.position += syncVel*Time.deltaTime;
 			
 			if(holdStateNeedsUpdating)
 			{
@@ -77,7 +83,7 @@ public class PlayerSync : NetworkBehaviour
 	[Client]
 	void TransmitPosition()
 	{
-		if (isLocalPlayer && (transform.position-syncPos).sqrMagnitude >= minDeltaBeforePosSync*minDeltaBeforePosSync)
+		if (isLocalPlayer)// && (transform.position-syncPos).sqrMagnitude >= minDeltaBeforePosSync*minDeltaBeforePosSync )
 		{
 			CmdSyncPosition(transform.position);
 		}
@@ -88,12 +94,17 @@ public class PlayerSync : NetworkBehaviour
 	void CmdSyncPosition(Vector3 posToTransmit)
 	{
 		syncPos = posToTransmit;
+		syncVel = localVelocity;
 	}
 
 	[Client]
-	void zimbabwe(Vector3 bepis)
+	void jelloPuddingPops(Vector3 azerbaijan)
 	{
-		syncPos = bepis;
+		syncPos = azerbaijan;
+		if(!isLocalPlayer)
+		{
+			transform.position = syncPos;
+		}
 		syncPosList.Add(syncPos);
 	}
 
