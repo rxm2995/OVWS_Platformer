@@ -91,7 +91,6 @@ public class Player : MonoBehaviour {
 			//If we're here, the player must have fallen off the screen. Return them to start.
 			transform.position = new Vector3(0, 0, 0);
 		}
-
 		sync.localVelocity = (transform.position-firstPos)/Time.deltaTime;
 	}
 } 

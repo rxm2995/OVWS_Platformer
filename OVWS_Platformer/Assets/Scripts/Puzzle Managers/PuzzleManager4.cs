@@ -26,6 +26,7 @@ public class PuzzleManager4 : MonoBehaviour
 		lowerScale *= 1 / secondsToFall;
 		toggledDown = false;
 		timeSinceButtonPress = 0;
+		toggleSwitchPressed = false;
 	}
 	
 	// Update is called once per frame
