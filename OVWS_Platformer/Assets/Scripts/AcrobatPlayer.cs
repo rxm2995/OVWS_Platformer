@@ -68,6 +68,25 @@ public class AcrobatPlayer : Player
 		{
 			//Being held
 			persistentVelocity = (transform.position-oldPos)/(Time.deltaTime*5);
+			Debug.Log(persistentVelocity);
+			if(persistentVelocity.x > 1f)
+			{
+				persistentVelocity.x = 5.0f;
+				persistentVelocity.y = 2f;
+			}
+			else if (persistentVelocity.x < -1f)
+			{
+				persistentVelocity.x = -5.0f;
+				persistentVelocity.y = 2f;
+			}
+			else
+			{
+				persistentVelocity.x = 0f;
+				if(persistentVelocity.y > 1.0f)
+					persistentVelocity.y = 2.5f;
+				else
+					persistentVelocity.y = 0.0f;
+			}
 			oldPos = transform.position;
 		}
 	}
