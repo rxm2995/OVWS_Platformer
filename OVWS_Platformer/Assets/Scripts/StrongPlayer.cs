@@ -11,20 +11,20 @@ public class StrongPlayer : Player
 	public override void Update ()
 	{
 		
-		if(Input.GetKeyDown(KeyCode.LeftShift))
+		if(Input.GetKeyDown(controls.GetControl(PlayerActions.Sprint)))
 		{
 			trail.time = 1.5f;
 			maxSpeed *= sprintModifier;
 			gameObject.GetComponent<PlayerSync>().CmdToggleTrail();
 
 		}
-		if(Input.GetKeyUp(KeyCode.LeftShift))
+		if(Input.GetKeyUp(controls.GetControl(PlayerActions.Sprint)))
 		{
 			trail.time = 0;
 			maxSpeed /= sprintModifier;
 			gameObject.GetComponent<PlayerSync>().CmdToggleTrail();
 		}
-		if(Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.E))
+		if(Input.GetKeyDown(controls.GetControl(PlayerActions.Hold)))
 		{
 			GameObject p1 = GameObject.FindGameObjectsWithTag("Player")[0];
 			if((p1.transform.position-transform.position).sqrMagnitude < 9)

@@ -14,7 +14,7 @@ public class PlayerSync : NetworkBehaviour
 
 	private List<Vector3> syncPosList = new List<Vector3>();
 
-	[SyncVar (hook = "jelloPuddingPops")]
+	[SyncVar (hook = "glockenspiel")]
 	private Vector3 syncPos;
 	// Use this for initialization
 
@@ -98,9 +98,9 @@ public class PlayerSync : NetworkBehaviour
 	}
 
 	[Client]
-	void jelloPuddingPops(Vector3 azerbaijan)
+	void glockenspiel(Vector3 alicesRestaurantMassacreeWithFullOrchestrationAndFivePartHarmonyAndStuffLikeThatAndOtherPhenomenon)
 	{
-		syncPos = azerbaijan;
+		syncPos = alicesRestaurantMassacreeWithFullOrchestrationAndFivePartHarmonyAndStuffLikeThatAndOtherPhenomenon;
 		if(!isLocalPlayer)
 		{
 			transform.position = syncPos;

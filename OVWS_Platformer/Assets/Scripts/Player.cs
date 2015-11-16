@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
 	protected Vector3 velocity;
 	protected Vector3 acceleration;
 	protected CharacterController charControl;
+	protected ControlManager controls;
 	
 	protected Vector3 persistentVelocity;
 	private bool rageQuit = false;
@@ -33,6 +34,7 @@ public class Player : MonoBehaviour {
 	public virtual void Start ()
 	{
 		charControl = gameObject.GetComponent<CharacterController> ();
+		controls = GameObject.Find("Game Manager").GetComponent<ControlManager>();
 	}
 	
 	// Update is called once per frame
@@ -43,20 +45,20 @@ public class Player : MonoBehaviour {
 		Vector3 velocity = Vector3.zero;
 		
 		//Input handling
-		if (Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.LeftArrow))
+		if (Input.GetKey (controls.GetControl(PlayerActions.MoveLeft)))
 		{
 			velocity.x += -1 * maxSpeed;// * Time.deltaTime;
 		}
-		if (Input.GetKey (KeyCode.D) || Input.GetKey (KeyCode.RightArrow))
+		if (Input.GetKey (controls.GetControl(PlayerActions.MoveRight)))
 		{
 			velocity.x += maxSpeed;// * Time.deltaTime;
 		}
-		if(Input.GetKeyDown(KeyCode.K) || rageQuit)
+		if(Input.GetKeyDown(controls.GetControl(PlayerActions.Ragequit)) || rageQuit)
 		{
 			rageQuit = true;
 			velocity.z -= 20;
 		}
-		if (onGround && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
+		if (onGround && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 		{
 			persistentVelocity.y = jumpForce;
 		}
