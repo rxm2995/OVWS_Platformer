@@ -11,7 +11,7 @@ public class Ping : NetworkBehaviour {
 	private int currentPingIndex;
 
 	void Start () {
-		pingSprite.enabled = false;
+		//pingSprite.enabled = false;
 		pingLocations = new Vector3[10];
 		currentPingIndex = 0;
 	}
@@ -50,7 +50,7 @@ public class Ping : NetworkBehaviour {
 
 	void displayPings()
 	{
-		foreach (int pingPosition in pingLocations) {
+		//foreach (int pingPosition in pingLocations) {
 			//Minimap Pings
 			//GUI.DrawTexture(new Rect(pingPosition.x, pingPosition.y, 50, 50), pingSprite);
 				//50 is placeholder for texture width and height
@@ -58,6 +58,6 @@ public class Ping : NetworkBehaviour {
 			//In-World Pings
 				//Instantiate?
 			//x
-		}
+		//}
 	}
 }
