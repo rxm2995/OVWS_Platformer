@@ -68,22 +68,47 @@ public class AcrobatPlayer : Player
 		{
 			//Being held
 			persistentVelocity = (transform.position-oldPos)/(Time.deltaTime*5);
-			Debug.Log(persistentVelocity);
-			if(persistentVelocity.x > 1f)
+			//Debug.Log(persistentVelocity);
+			//Throwing values based on the strong player sprinting, walking, or only jumping in place
+			//Moving Right
+			if(persistentVelocity.x > .5f)
 			{
-				persistentVelocity.x = 5.0f;
-				persistentVelocity.y = 2f;
+				//Sprinting
+				if(persistentVelocity.x > 1.5f)
+				{
+					persistentVelocity.x = 5.0f;
+					persistentVelocity.y = 2f;
+				}
+				//Walking
+				else
+				{
+					persistentVelocity.x = 2.5f;
+					persistentVelocity.y = 1f;
+				}
 			}
-			else if (persistentVelocity.x < -1f)
+			//Moving Left
+			else if(persistentVelocity.x < -.5f)
 			{
-				persistentVelocity.x = -5.0f;
-				persistentVelocity.y = 2f;
+				//Sprinting
+				if (persistentVelocity.x < -1.5f)
+				{
+					persistentVelocity.x = -5.0f;
+					persistentVelocity.y = 2f;
+				}
+				//Walking
+				else
+				{
+					persistentVelocity.x = -2.5f;
+					persistentVelocity.y = 1f;
+				}
 			}
+			//Standing in one spot
 			else
 			{
 				persistentVelocity.x = 0f;
+				//Jumping
 				if(persistentVelocity.y > 1.0f)
-					persistentVelocity.y = 2.5f;
+					persistentVelocity.y = 3.0f;
 				else
 					persistentVelocity.y = 0.0f;
 			}
