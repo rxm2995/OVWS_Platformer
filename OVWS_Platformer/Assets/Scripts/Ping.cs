@@ -7,12 +7,13 @@ public class Ping : NetworkBehaviour {
 	public Texture pingSprite;
 	private Vector3 clickPosition;
 	//change to data structure with push pull functionality for ping kill timer
-	private Vector3[] pingLocations;
+	//private Vector3[] pingLocations;
+	private ArrayList pingLocations;
 	private int currentPingIndex;
 
 	void Start () {
 		//pingSprite.enabled = false;
-		pingLocations = new Vector3[10];
+		pingLocations = new ArrayList();
 		currentPingIndex = 0;
 	}
 
@@ -40,23 +41,23 @@ public class Ping : NetworkBehaviour {
 	void addPing()
 	{
 		// Minimap Ping
-		pingLocations [currentPingIndex] = Input.mousePosition;
 
 		// In-World Ping
 		// x
 
+		pingLocations.Add ();
 		currentPingIndex += 1;
 	}
 
 	void displayPings()
 	{
-		//foreach (int pingPosition in pingLocations) {
+		//foreach (Vector3 pingPosition in pingLocations)) {
 			//Minimap Pings
 			//GUI.DrawTexture(new Rect(pingPosition.x, pingPosition.y, 50, 50), pingSprite);
 				//50 is placeholder for texture width and height
 
 			//In-World Pings
-				//Instantiate?
+			//Instantiate(Ping, Input.mousePosition, new Quaternion(0,0,0,0));
 			//x
 		//}
 	}
