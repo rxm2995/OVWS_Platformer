@@ -17,38 +17,13 @@ public class PingControls : NetworkBehaviour {
 	void Update () {
 
 		//isLocalPlayer LMB
-		if (Input.GetMouseButtonDown (0)) {
-			clickPosition = Input.mousePosition;
-			if (Input.GetKey(KeyCode.Space))
-			{
-				addPing();
+		if (isLocalPlayer) {
+			if (Input.GetMouseButtonDown (0)) {
+				clickPosition = Input.mousePosition;
+
+				Instantiate(ping, new Vector3(0, 0, 0), new Quaternion(0,0,0,0));
+				Debug.Log("ping added");
 			}
-
-			/*
-			// Check if clicked within minimap border
-			if ((Input.mousePosition.x > (Screen.width * 0.75)) && (Input.mousePosition.x < Screen.width)) {
-				if ((Input.mousePosition.y < (Screen.height * 0.25)) && (Input.mousePosition.y > 0)) {
-					Debug.Log("CLICKED IN MINIMAP");
-					//addPing();
-				}
-			}
-			*/
-		}
-
-		displayPings ();
-	}
-
-	void addPing()
-	{
-		pingLocations.Add (new Vector3(clickPosition.x, clickPosition.y, 0));
-		currentPingIndex += 1;
-	}
-
-	void displayPings()
-	{
-		foreach (Vector3 pingPosition in pingLocations) {
-			Instantiate(ping, pingPosition, new Quaternion(0,0,0,0));
-			//x
 		}
 	}
 }
