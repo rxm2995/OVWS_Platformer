@@ -14,7 +14,7 @@ public class PlayerSync : NetworkBehaviour
 
 	private List<Vector3> syncPosList = new List<Vector3>();
 
-	[SyncVar (hook = "glockenspiel")]
+	[SyncVar (hook = "通常の関数名")]
 	private Vector3 syncPos;
 	// Use this for initialization
 
@@ -98,9 +98,9 @@ public class PlayerSync : NetworkBehaviour
 	}
 
 	[Client]
-	void glockenspiel(Vector3 alicesRestaurantMassacreeWithFullOrchestrationAndFivePartHarmonyAndStuffLikeThatAndOtherPhenomenon)
+	void 通常の関数名(Vector3 нормальный_имя_переменной)
 	{
-		syncPos = alicesRestaurantMassacreeWithFullOrchestrationAndFivePartHarmonyAndStuffLikeThatAndOtherPhenomenon;
+		syncPos = нормальный_имя_переменной;
 		if(!isLocalPlayer)
 		{
 			transform.position = syncPos;

@@ -42,7 +42,7 @@ public class AcrobatPlayer : Player
 			//Debug.Log("CanWallJump: " + canWallJump);
 			if(!onGround)
 			{
-				if (onWall && canWallJump && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
+				if (onWall && canWallJump && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 				{
 					Debug.Log("Wall Jumped");
 					persistentVelocity.y = jumpForce/jumpDecayRate;
@@ -52,7 +52,7 @@ public class AcrobatPlayer : Player
 					onWall = false;
 					wallDir = 0;
 				}
-				else if (canAirJump && (Input.GetKeyDown (KeyCode.W) || Input.GetKeyDown (KeyCode.UpArrow) || Input.GetKeyDown (KeyCode.Space)))
+				else if (canAirJump && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 				{
 					Debug.Log("Air Jumped");
 					persistentVelocity.y = jumpForce/jumpDecayRate;
@@ -68,7 +68,6 @@ public class AcrobatPlayer : Player
 		{
 			//Being held
 			persistentVelocity = (transform.position-oldPos)/(Time.deltaTime*5);
-			//Debug.Log(persistentVelocity);
 			//Throwing values based on the strong player sprinting, walking, or only jumping in place
 			//Moving Right
 			if(persistentVelocity.x > .5f)
