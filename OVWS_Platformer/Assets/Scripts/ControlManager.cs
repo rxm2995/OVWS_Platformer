@@ -15,35 +15,51 @@ public enum PlayerActions
 
 public class ControlManager : MonoBehaviour
 {
-	private KeyCode[] controlCodes;
+	private KeyCode[] controlCodes = {KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftShift, KeyCode.Z, KeyCode.K};
 
 	// Use this for initialization
 	void Start ()
 	{
-		KeyCode[] tempCodes = {KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftShift, KeyCode.Z, KeyCode.K};
-		controlCodes = tempCodes;
+		if(GameObject.FindGameObjectsWithTag(gameObject.tag).Length > 1)
+		{
+			//Duplicate prevention
+			Destroy(gameObject);
+			return;
+		}
 		DontDestroyOnLoad(gameObject);
 	}
 
-	public KeyCode GetControl(PlayerActions index)
+	public KeyCode GetControl(PlayerActions actionToGet)
 	{
-		return controlCodes[(int)index];
+		return controlCodes[(int)actionToGet];
 	}
 
-	public void SetControl(PlayerActions index, KeyCode newVal)
+	public void SetControl(PlayerActions actionToSet, KeyCode newVal)
 	{
-		controlCodes[(int)index] = newVal;
+		controlCodes[(int)actionToSet] = newVal;
 	}
 
 	public void SetWASDControls()
 	{
 		KeyCode[] tempCodes = {KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.LeftShift, KeyCode.F, KeyCode.K};
 		controlCodes = tempCodes;
+
+		ButtonThing[] buttonsToUpdate = GameObject.Find("Button Holder").GetComponentsInChildren<ButtonThing>();
+		foreach(ButtonThing bt in buttonsToUpdate)
+		{
+			bt.UpdateText();
+		}
 	}
 
 	public void SetArrowControls()
 	{
 		KeyCode[] tempCodes = {KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftShift, KeyCode.Z, KeyCode.K};
 		controlCodes = tempCodes;
+
+		ButtonThing[] buttonsToUpdate = GameObject.Find("Button Holder").GetComponentsInChildren<ButtonThing>();
+		foreach(ButtonThing bt in buttonsToUpdate)
+		{
+			bt.UpdateText();
+		}
 	}
 }

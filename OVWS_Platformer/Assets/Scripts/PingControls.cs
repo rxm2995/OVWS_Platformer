@@ -2,17 +2,14 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class Ping : NetworkBehaviour {
+public class PingControls : NetworkBehaviour {
 
-	public Texture pingSprite;
+	public GameObject ping;
 	private Vector3 clickPosition;
-	//change to data structure with push pull functionality for ping kill timer
-	//private Vector3[] pingLocations;
 	private ArrayList pingLocations;
 	private int currentPingIndex;
 
 	void Start () {
-		//pingSprite.enabled = false;
 		pingLocations = new ArrayList();
 		currentPingIndex = 0;
 	}
@@ -22,7 +19,12 @@ public class Ping : NetworkBehaviour {
 		//isLocalPlayer LMB
 		if (Input.GetMouseButtonDown (0)) {
 			clickPosition = Input.mousePosition;
+			if (Input.GetKey(KeyCode.Space))
+			{
+				addPing();
+			}
 
+			/*
 			// Check if clicked within minimap border
 			if ((Input.mousePosition.x > (Screen.width * 0.75)) && (Input.mousePosition.x < Screen.width)) {
 				if ((Input.mousePosition.y < (Screen.height * 0.25)) && (Input.mousePosition.y > 0)) {
@@ -30,9 +32,7 @@ public class Ping : NetworkBehaviour {
 					//addPing();
 				}
 			}
-
-			// Else, handle real world position conversion
-			// x
+			*/
 		}
 
 		displayPings ();
@@ -40,25 +40,15 @@ public class Ping : NetworkBehaviour {
 
 	void addPing()
 	{
-		// Minimap Ping
-
-		// In-World Ping
-		// x
-
-		pingLocations.Add ();
+		pingLocations.Add (new Vector3(clickPosition.x, clickPosition.y, 0));
 		currentPingIndex += 1;
 	}
 
 	void displayPings()
 	{
-		//foreach (Vector3 pingPosition in pingLocations)) {
-			//Minimap Pings
-			//GUI.DrawTexture(new Rect(pingPosition.x, pingPosition.y, 50, 50), pingSprite);
-				//50 is placeholder for texture width and height
-
-			//In-World Pings
-			//Instantiate(Ping, Input.mousePosition, new Quaternion(0,0,0,0));
+		foreach (Vector3 pingPosition in pingLocations) {
+			Instantiate(ping, pingPosition, new Quaternion(0,0,0,0));
 			//x
-		//}
+		}
 	}
 }
