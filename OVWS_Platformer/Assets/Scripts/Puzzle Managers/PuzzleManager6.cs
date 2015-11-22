@@ -21,12 +21,12 @@ public class PuzzleManager6 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(switchOneStatus.activated && initialPos.x == downPos.x)
+		if(switchOneStatus.activated && Mathf.Round(movingPlatform.transform.position.x) == downPos.x)
 		{
 			movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, downPos, Time.deltaTime);
 
 		}
-		else if(switchTwoStatus.activated && initialPos.y == leftPos.y)
+		else if(switchTwoStatus.activated && Mathf.Round(movingPlatform.transform.position.y) == leftPos.y)
 		{
 			movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, leftPos, Time.deltaTime);
 		}
