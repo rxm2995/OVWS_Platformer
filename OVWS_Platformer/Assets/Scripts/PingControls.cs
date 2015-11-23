@@ -12,9 +12,11 @@ public class PingControls : NetworkBehaviour {
 	private Vector3 clickPosition;
 
 	void Start () {
+		/*
 		if (isLocalPlayer) {
 			Cursor.visible = false;
 		}
+		*/
 	}
 
 	void Update () {
@@ -27,7 +29,7 @@ public class PingControls : NetworkBehaviour {
 					clickPosition = Input.mousePosition;
 					Vector3 destination = playerCamera.ScreenPointToRay(clickPosition).GetPoint(10);
 
-					Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), ping.transform.rotation);
+					CmdSpawnPing(destination);
 				}
 			}
 
@@ -37,6 +39,7 @@ public class PingControls : NetworkBehaviour {
 				cameraDragging = true;
 
 				//disable player movement
+
 
 				//move mouse to middle of screen
 				Cursor.lockState = CursorLockMode.Locked;
@@ -52,5 +55,11 @@ public class PingControls : NetworkBehaviour {
 			}
 			*/
 		}
+	}
+
+	[Command]
+	void CmdSpawnPing(Vector3 destination){
+		Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), new Quaternion(90,0,0,0));
+		NetworkServer.Spawn (ping);
 	}
 }
