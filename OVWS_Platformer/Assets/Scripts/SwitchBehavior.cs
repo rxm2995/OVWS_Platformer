@@ -48,20 +48,19 @@ public class SwitchBehavior : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col)
 	{
-		Debug.Log("Test");
-		if(col.gameObject.tag == "Player")
+		if(!puzzleSolved)
 		{
-			if(toggle)
+			if(col.gameObject.tag == "Player")
 			{
-				activated = !activated;
-				if(activated)
-					solveIndicator.color = activeColor;
-				else
-					solveIndicator.color = inactiveColor;
-			}
-			if(pressure)
-			{
-				if(!puzzleSolved)
+				if(toggle)
+				{
+					activated = !activated;
+					if(activated)
+						solveIndicator.color = activeColor;
+					else
+						solveIndicator.color = inactiveColor;
+				}
+				if(pressure)
 				{
 					activated = true;
 					solveIndicator.color = activeColor;
@@ -72,15 +71,15 @@ public class SwitchBehavior : MonoBehaviour {
 
 	void OnTriggerExit(Collider col)
 	{
-		if(col.gameObject.tag == "Player")
+		if(!puzzleSolved)
 		{
-//			if(toggle)
-//			{
-//
-//			}
-			if(pressure)
+			if(col.gameObject.tag == "Player")
 			{
-				if(!puzzleSolved)
+	//			if(toggle)
+	//			{
+	//
+	//			}
+				if(pressure)
 				{
 					activated = false;
 					solveIndicator.color = inactiveColor;
