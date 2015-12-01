@@ -7,7 +7,8 @@ public class PuzzleManager6 : MonoBehaviour {
 	Vector3 initialPos;
 	Vector3 downPos;
 	Vector3 leftPos;
-	
+	Vector3 targetPos, currentPos;
+
 	private SwitchBehavior switchOneStatus, switchTwoStatus;
 
 	// Use this for initialization
@@ -21,18 +22,32 @@ public class PuzzleManager6 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(switchOneStatus.activated && Mathf.Round(movingPlatform.transform.position.x) == downPos.x)
+		currentPos = movingPlatform.transform.position;
+//		if(switchOneStatus.activated && Mathf.Round(movingPlatform.transform.position.x) == downPos.x)
+//		{
+//			movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, downPos, Time.deltaTime);
+//		}
+//		else if(switchTwoStatus.activated && Mathf.Round(movingPlatform.transform.position.y) == leftPos.y)
+//		{
+//			movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, leftPos, Time.deltaTime);
+//		}
+//		else
+//		{
+//			movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, initialPos, Time.deltaTime);
+//		}
+		if(switchOneStatus.activated && Mathf.Round(currentPos.x) == downPos.x)
 		{
-			movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, downPos, Time.deltaTime);
-
+			targetPos = downPos;
 		}
-		else if(switchTwoStatus.activated && Mathf.Round(movingPlatform.transform.position.y) == leftPos.y)
+		else if(switchTwoStatus.activated && Mathf.Round(currentPos.y) == leftPos.y)
 		{
-			movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, leftPos, Time.deltaTime);
+			targetPos = leftPos;
 		}
 		else
 		{
-			movingPlatform.transform.position = Vector3.Lerp(movingPlatform.transform.position, initialPos, Time.deltaTime);
+			targetPos = initialPos;
 		}
+		float lerpRate = 1.0f - (Mathf.Abs(targetPos.magnitude - currentPos.magnitude)/50.0f);
+		movingPlatform.transform.position = Vector3.Lerp(currentPos, targetPos, Time.deltaTime * lerpRate * 2.0f);
 	}
 }

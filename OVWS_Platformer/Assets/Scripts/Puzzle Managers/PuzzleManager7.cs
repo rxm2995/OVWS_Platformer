@@ -7,6 +7,8 @@ public class PuzzleManager7 : MonoBehaviour {
 	Vector3 initialPos1, initialPos2;
 	Vector3 downPos1, rightPos1;
 	Vector3 upPos2;
+	Vector3 targetPos1, currentPos1;
+	Vector3 targetPos2, currentPos2;
 	
 	private SwitchBehavior switchOneStatus, switchTwoStatus, switchThreeStatus;
 	
@@ -24,26 +26,57 @@ public class PuzzleManager7 : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		currentPos1 = movingPlatform1.transform.position;
+		currentPos2 = movingPlatform2.transform.position;
+//		if(switchOneStatus.activated)
+//		{
+//			movingPlatform1.transform.position = Vector3.Lerp(movingPlatform1.transform.position, downPos1, Time.deltaTime);
+//		}
+//		else if(switchTwoStatus.activated)
+//		{
+//			movingPlatform1.transform.position = Vector3.Lerp(movingPlatform1.transform.position, rightPos1, Time.deltaTime);
+//		}
+//		else
+//		{
+//			movingPlatform1.transform.position = Vector3.Lerp(movingPlatform1.transform.position, initialPos1, Time.deltaTime);
+//		}
+//
+//		if(switchThreeStatus.activated)
+//		{
+//			movingPlatform2.transform.position = Vector3.Lerp(movingPlatform2.transform.position, upPos2, Time.deltaTime);
+//		}
+//		else
+//		{
+//			movingPlatform2.transform.position = Vector3.Lerp(movingPlatform2.transform.position, initialPos2, Time.deltaTime);
+//		}
+
 		if(switchOneStatus.activated)
 		{
-			movingPlatform1.transform.position = Vector3.Lerp(movingPlatform1.transform.position, downPos1, Time.deltaTime);
+			targetPos1 = downPos1;
 		}
 		else if(switchTwoStatus.activated)
 		{
-			movingPlatform1.transform.position = Vector3.Lerp(movingPlatform1.transform.position, rightPos1, Time.deltaTime);
+			targetPos1 = rightPos1;
 		}
 		else
 		{
-			movingPlatform1.transform.position = Vector3.Lerp(movingPlatform1.transform.position, initialPos1, Time.deltaTime);
+			targetPos1 = initialPos1;
 		}
 
 		if(switchThreeStatus.activated)
 		{
-			movingPlatform2.transform.position = Vector3.Lerp(movingPlatform2.transform.position, upPos2, Time.deltaTime);
+			targetPos2 = upPos2;
 		}
 		else
 		{
-			movingPlatform2.transform.position = Vector3.Lerp(movingPlatform2.transform.position, initialPos2, Time.deltaTime);
+			targetPos2 = initialPos2;
 		}
+
+
+		float lerpRate1 = 1.0f - (Mathf.Abs(targetPos1.magnitude - currentPos1.magnitude)/50.0f);
+		movingPlatform1.transform.position = Vector3.Lerp(currentPos1, targetPos1, Time.deltaTime * lerpRate1 * 2.0f);
+
+		float lerpRate2 = 1.0f - (Mathf.Abs(targetPos2.magnitude - currentPos2.magnitude)/50.0f);
+		movingPlatform2.transform.position = Vector3.Lerp(currentPos2, targetPos2, Time.deltaTime * lerpRate2 * 2.0f);
 	}
 }
