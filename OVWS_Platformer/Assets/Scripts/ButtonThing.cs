@@ -17,11 +17,6 @@ public class ButtonThing : MonoBehaviour
 		isBeingRemapped = false;
 		UpdateText ();
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	}
 
 	void OnGUI()
 	{

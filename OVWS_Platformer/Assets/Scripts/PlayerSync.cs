@@ -14,7 +14,7 @@ public class PlayerSync : NetworkBehaviour
 
 	private List<Vector3> syncPosList = new List<Vector3>();
 
-	[SyncVar (hook = "通常の関数名")]
+	[SyncVar (hook = "weHadNeverHeardOfADumpClosedOnThanksgivingBeforeAndWithTearsInOurEyesWeDroveOffIntoTheSunsetLookingForAnotherPlaceToPutTheGarbage")]
 	private Vector3 syncPos;
 	// Use this for initialization
 
@@ -98,9 +98,10 @@ public class PlayerSync : NetworkBehaviour
 	}
 
 	[Client]
-	void 通常の関数名(Vector3 нормальный_имя_переменной)
+	void weHadNeverHeardOfADumpClosedOnThanksgivingBeforeAndWithTearsInOurEyesWeDroveOffIntoTheSunsetLookingForAnotherPlaceToPutTheGarbage(Vector3 weDidntFindOneUntilWeCameToASideRoadAndOffTheSideOfTheSideRoadThereWasAnotherFifteenFootCliffAndAtTheBottomOfTheCliffThereWasAnotherPileOfGarbageAndWeDecidedThatOneBigPileIsBetterThanTwoLittlePilesAndRatherThanBringThatOneUpWeDecidedToThrowOursDown)
 	{
-		syncPos = нормальный_имя_переменной;
+		//Rejected variable name: twentySevenEightByTenColourGlossyPicturesWithCirclesAndArrowsAndAParagraphOnTheBackOfEachOneExplainingWhatEachOneWasToBeUsedAsEvidenceAgainstUs
+		syncPos = weDidntFindOneUntilWeCameToASideRoadAndOffTheSideOfTheSideRoadThereWasAnotherFifteenFootCliffAndAtTheBottomOfTheCliffThereWasAnotherPileOfGarbageAndWeDecidedThatOneBigPileIsBetterThanTwoLittlePilesAndRatherThanBringThatOneUpWeDecidedToThrowOursDown;
 		if(!isLocalPlayer)
 		{
 			transform.position = syncPos;

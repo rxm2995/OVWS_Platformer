@@ -7,13 +7,13 @@ public class LevelEnd : NetworkBehaviour
 	public Light triggerLight;
 	public string nextLevel;
 
-	NetworkManager netManager;
+	CustomNetworkManager netManager;
 	int playersAtEnd;
 
 	void Start ()
 	{
 		playersAtEnd = 0;
-		netManager = GameObject.FindGameObjectWithTag("NetManager").GetComponent<NetworkManager>();
+		netManager = GameObject.FindGameObjectWithTag("NetManager").GetComponent<CustomNetworkManager>();
 	}
 
 	void Update () {
