@@ -5,18 +5,25 @@ using UnityEngine.Networking;
 public class PingControls : NetworkBehaviour {
 
 	public GameObject ping;
-	//public GameObject rayCastNet;
 	public Camera playerCamera;
-
 	private bool cameraDragging;
 	private Vector3 clickPosition;
+    private Vector3 playerCameraStartPos;
+
+    [Command]
+    void CmdSpawnPing(Vector3 destination)
+    {
+        Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), Quaternion.identity);
+    }
+
+    [ClientRpc]
+    void RpcSpawnPing(Vector3 destination)
+    {
+        Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), Quaternion.identity);
+    }
 
 	void Start () {
-		/*
-		if (isLocalPlayer) {
-			Cursor.visible = false;
-		}
-		*/
+		cameraDragging = false;
 	}
 
 	void Update () {
@@ -31,25 +38,19 @@ public class PingControls : NetworkBehaviour {
 
 					if (isServer)
 					{
-						Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), new Quaternion(0, 0, 0, 0));
-						//RpcSpawnPing(destination);
-						NetworkServer.Spawn (ping);
+                        RpcSpawnPing(destination);
 					}
 					else if (isClient) {
-						Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), new Quaternion(0, 0, 0, 0));
+						Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), Quaternion.identity);
 						CmdSpawnPing(destination);
 					}
-
-
-					clientOnlySpawnPing(destination);
-					//RpcSpawnPing(destination);
-					CmdSpawnPing(destination);
 				}
 			}
 
 			// Activate Camera Dragging with Tab
 			if (Input.GetKeyDown(KeyCode.Tab))
 			{
+                // ENABLE
 				if (!cameraDragging)
 				{	
 					cameraDragging = true;
@@ -64,7 +65,11 @@ public class PingControls : NetworkBehaviour {
 					Cursor.lockState = CursorLockMode.Locked;
 					Cursor.lockState = CursorLockMode.None;
 					Cursor.visible = true;
+
+                    //record player camera start position
+                    playerCameraStartPos = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
 				}
+                // DISABLE
 				else
 				{
 					cameraDragging = false;
@@ -74,33 +79,36 @@ public class PingControls : NetworkBehaviour {
 					GetComponent<AcrobatPlayer>().jumpForce = 1;
 					GetComponent<StrongPlayer>().maxSpeed = 6;
 					GetComponent<StrongPlayer>().jumpForce = 1;
+
+                    //reset player camera position
+                    playerCamera.transform.position = playerCameraStartPos;
 				}
 			}
 
-			/*
-			// Camera Dragging - move mouse to edges of screen to drag camera
-			if (Input.mousePosition.x)
-			{
 
-			}
-			*/
+            // Camera Dragging - move mouse to edges of screen to drag camera
+            if (cameraDragging)
+            {
+                Vector3 destination = new Vector3(0f, 0f, 0f);
+                if (Input.mousePosition.x > Screen.width - (Screen.width * 0.2))
+                {
+                    destination.Set(destination.x + .08f, destination.y, 0f);
+                }
+                else if (Input.mousePosition.x < 0 + (Screen.width * 0.2))
+                {
+                    destination.Set(destination.x - .08f, destination.y, 0f);
+                }
+                if (Input.mousePosition.y < (0 + (Screen.width * 0.2)))
+                {
+                    destination.Set(destination.x, destination.y - .08f, 0f);
+                }
+                else if (Input.mousePosition.y > (Screen.height - (Screen.height * 0.2)))
+                {
+                    destination.Set(destination.x, destination.y + .08f, 0f);
+                }
+                playerCamera.transform.Translate(destination.x, destination.y, 0f);
+            }
+            
 		}
-	}
-
-	[Command]
-	void CmdSpawnPing(Vector3 destination){
-		Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), new Quaternion(0, 0, 0, 0));
-		//RpcSpawnPing(destination);
-		//NetworkServer.Spawn (ping);
-	}
-
-	[ClientRpc]
-	void RpcSpawnPing(Vector3 destination){
-		Instantiate (ping, new Vector3 (destination.x, destination.y, -1.5f), new Quaternion (0, 0, 0, 0));
-	}
-
-	[ClientCallback]
-	void clientOnlySpawnPing(Vector3 destination){
-		Instantiate (ping, new Vector3 (destination.x, destination.y, -1.5f), new Quaternion (0, 0, 0, 0));
 	}
 }
