@@ -14,13 +14,13 @@ public class PingControls : NetworkBehaviour {
     [Command]
     void CmdSpawnPing(Vector3 destination)
     {
-        Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), Quaternion.identity);
+        Instantiate(ping, new Vector3(destination.x, destination.y, 1.0f), Quaternion.identity);
     }
 
     [ClientRpc]
     void RpcSpawnPing(Vector3 destination)
     {
-        Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), Quaternion.identity);
+        Instantiate(ping, new Vector3(destination.x, destination.y, 1.0f), Quaternion.identity);
     }
 
 	void Start () {
@@ -57,8 +57,10 @@ public class PingControls : NetworkBehaviour {
 				{
 					Debug.Log("Enabling Camera Drag");
 					cameraDragging = true;
-					
-					//disable player movement
+
+                    //disable player movement
+                    //GetComponent<CharacterController>().enabled = false;
+
 					GetComponent<AcrobatPlayer>().maxSpeed = 0;
 					GetComponent<AcrobatPlayer>().jumpForce = 0;
 					GetComponent<StrongPlayer>().maxSpeed = 0;
@@ -70,7 +72,7 @@ public class PingControls : NetworkBehaviour {
 					Cursor.visible = true;
 
                     //record player camera start position
-                    playerCameraStartPos = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
+                   // playerCameraStartPos = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y, playerCamera.transform.position.z);
 				}
                 // DISABLE
 				else
@@ -78,16 +80,20 @@ public class PingControls : NetworkBehaviour {
 					Debug.Log("Disabling Camera Drag");
 
 					cameraDragging = false;
-					
-					//enable player movement
-					GetComponent<AcrobatPlayer>().maxSpeed = 6;
+
+                    //enable player movement
+                    //GetComponent<CharacterController>().enabled = true;
+
+                    GetComponent<AcrobatPlayer>().maxSpeed = 6;
 					GetComponent<AcrobatPlayer>().jumpForce = 1;
 					GetComponent<StrongPlayer>().maxSpeed = 4;
 					GetComponent<StrongPlayer>().jumpForce = 1.25f;
 
                     //reset player camera position
-                    playerCamera.transform.position = playerCameraStartPos;
-				}
+                    //playerCamera.transform.position = playerCameraStartPos;
+                    playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                    playerCamera.transform.localPosition = new Vector3(0, 0, -10);
+                }
 			}
 
 
