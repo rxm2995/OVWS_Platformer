@@ -20,10 +20,19 @@ public class ButtonThing : MonoBehaviour
 
 	void OnGUI()
 	{
-		if(isBeingRemapped && Event.current.isKey)
+		if(isBeingRemapped && (Event.current.isKey || Event.current.isMouse))
 		{
-			controlObject.SetControl(actionToSet, Event.current.keyCode);
-			gameObject.GetComponentInChildren<Text>().text = Event.current.keyCode.ToString();
+			if(Event.current.isKey)
+			{
+				controlObject.SetControl(actionToSet, Event.current.keyCode);
+				gameObject.GetComponentInChildren<Text>().text = Event.current.keyCode.ToString();
+			}
+			else if(Event.current.isMouse)
+			{
+				KeyCode kc = KeyCode.Mouse0+Event.current.button;
+				controlObject.SetControl(actionToSet, kc);
+				gameObject.GetComponentInChildren<Text>().text = kc.ToString();
+			}
 			isBeingRemapped = false;
 		}
 	}

@@ -10,12 +10,14 @@ public enum PlayerActions
 	Jump,
 	Sprint,
 	Hold,
-	Ragequit
+	Ragequit,
+	SpawnPing,
+	ToggleCamMove
 };
 
 public class ControlManager : MonoBehaviour
 {
-	private KeyCode[] controlCodes = {KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftShift, KeyCode.Z, KeyCode.K};
+	private KeyCode[] controlCodes = {KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftShift, KeyCode.Z, KeyCode.K, KeyCode.Mouse1, KeyCode.Tab};
 
 	// Use this for initialization
 	void Start ()
@@ -41,7 +43,7 @@ public class ControlManager : MonoBehaviour
 
 	public void SetWASDControls()
 	{
-		KeyCode[] tempCodes = {KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.LeftShift, KeyCode.F, KeyCode.K};
+		KeyCode[] tempCodes = {KeyCode.A, KeyCode.D, KeyCode.W, KeyCode.LeftShift, KeyCode.F, KeyCode.K, KeyCode.Mouse1, KeyCode.Tab};
 		controlCodes = tempCodes;
 
 		ButtonThing[] buttonsToUpdate = GameObject.Find("Button Holder").GetComponentsInChildren<ButtonThing>();
@@ -53,7 +55,7 @@ public class ControlManager : MonoBehaviour
 
 	public void SetArrowControls()
 	{
-		KeyCode[] tempCodes = {KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftShift, KeyCode.Z, KeyCode.K};
+		KeyCode[] tempCodes = {KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.UpArrow, KeyCode.LeftShift, KeyCode.Z, KeyCode.K, KeyCode.Mouse1, KeyCode.Tab};
 		controlCodes = tempCodes;
 
 		ButtonThing[] buttonsToUpdate = GameObject.Find("Button Holder").GetComponentsInChildren<ButtonThing>();

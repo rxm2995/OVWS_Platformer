@@ -6,6 +6,7 @@ public class PingControls : NetworkBehaviour {
 
 	public GameObject ping;
 	public Camera playerCamera;
+	private ControlManager controls;
 	private bool cameraDragging;
 	private Vector3 clickPosition;
     private Vector3 playerCameraStartPos;
@@ -23,14 +24,15 @@ public class PingControls : NetworkBehaviour {
     }
 
 	void Start () {
-		cameraDragging = false;
+		cameraDragging = true;
+		controls = GameObject.Find("Game Manager").GetComponent<ControlManager>();
 	}
 
 	void Update () {
 		if (isLocalPlayer) {
 		
 			// Add Ping with RMB
-			if (Input.GetMouseButtonDown (1)) {
+			if (Input.GetKey (controls.GetControl(PlayerActions.SpawnPing))) {
 				if (cameraDragging)
 				{
 					clickPosition = Input.mousePosition;
@@ -48,11 +50,12 @@ public class PingControls : NetworkBehaviour {
 			}
 
 			// Activate Camera Dragging with Tab
-			if (Input.GetKeyDown(KeyCode.Tab))
+			if (Input.GetKeyDown(controls.GetControl(PlayerActions.ToggleCamMove)))
 			{
                 // ENABLE
 				if (!cameraDragging)
-				{	
+				{
+					Debug.Log("Enabling Camera Drag");
 					cameraDragging = true;
 					
 					//disable player movement
@@ -72,6 +75,7 @@ public class PingControls : NetworkBehaviour {
                 // DISABLE
 				else
 				{
+					Debug.Log("Disabling Camera Drag");
 					cameraDragging = false;
 					
 					//enable player movement
