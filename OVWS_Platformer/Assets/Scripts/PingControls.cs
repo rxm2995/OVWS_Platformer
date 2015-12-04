@@ -24,7 +24,7 @@ public class PingControls : NetworkBehaviour {
     }
 
 	void Start () {
-		cameraDragging = true;
+		cameraDragging = false;
 		controls = GameObject.Find("Game Manager").GetComponent<ControlManager>();
 	}
 
@@ -32,7 +32,7 @@ public class PingControls : NetworkBehaviour {
 		if (isLocalPlayer) {
 		
 			// Add Ping with RMB
-			if (Input.GetKey (controls.GetControl(PlayerActions.SpawnPing))) {
+			if (Input.GetKeyDown (controls.GetControl(PlayerActions.SpawnPing))) {
 				if (cameraDragging)
 				{
 					clickPosition = Input.mousePosition;
@@ -76,13 +76,14 @@ public class PingControls : NetworkBehaviour {
 				else
 				{
 					Debug.Log("Disabling Camera Drag");
+
 					cameraDragging = false;
 					
 					//enable player movement
 					GetComponent<AcrobatPlayer>().maxSpeed = 6;
 					GetComponent<AcrobatPlayer>().jumpForce = 1;
-					GetComponent<StrongPlayer>().maxSpeed = 6;
-					GetComponent<StrongPlayer>().jumpForce = 1;
+					GetComponent<StrongPlayer>().maxSpeed = 4;
+					GetComponent<StrongPlayer>().jumpForce = 1.25f;
 
                     //reset player camera position
                     playerCamera.transform.position = playerCameraStartPos;
