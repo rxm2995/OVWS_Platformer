@@ -47,7 +47,6 @@ public class PuzzleManager6 : MonoBehaviour {
 		{
 			targetPos = initialPos;
 		}
-		float lerpRate = 1.0f - (Mathf.Abs(targetPos.magnitude - currentPos.magnitude)/50.0f);
-		movingPlatform.transform.position = Vector3.Lerp(currentPos, targetPos, Time.deltaTime * lerpRate * 2.0f);
+		movingPlatform.transform.position = Vector3.MoveTowards(currentPos, targetPos, Time.deltaTime * 10.0f);
 	}
 }

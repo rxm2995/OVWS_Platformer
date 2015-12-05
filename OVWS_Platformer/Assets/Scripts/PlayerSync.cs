@@ -14,7 +14,7 @@ public class PlayerSync : NetworkBehaviour
 
 	private List<Vector3> syncPosList = new List<Vector3>();
 
-	[SyncVar (hook = "weHadNeverHeardOfADumpClosedOnThanksgivingBeforeAndWithTearsInOurEyesWeDroveOffIntoTheSunsetLookingForAnotherPlaceToPutTheGarbage")]
+	[SyncVar (hook = "clientSyncPos")]
 	private Vector3 syncPos;
 	// Use this for initialization
 
@@ -98,10 +98,10 @@ public class PlayerSync : NetworkBehaviour
 	}
 
 	[Client]
-	void weHadNeverHeardOfADumpClosedOnThanksgivingBeforeAndWithTearsInOurEyesWeDroveOffIntoTheSunsetLookingForAnotherPlaceToPutTheGarbage(Vector3 weDidntFindOneUntilWeCameToASideRoadAndOffTheSideOfTheSideRoadThereWasAnotherFifteenFootCliffAndAtTheBottomOfTheCliffThereWasAnotherPileOfGarbageAndWeDecidedThatOneBigPileIsBetterThanTwoLittlePilesAndRatherThanBringThatOneUpWeDecidedToThrowOursDown)
+	void clientSyncPos(Vector3 posToSync)
 	{
 		//Rejected variable name: twentySevenEightByTenColourGlossyPicturesWithCirclesAndArrowsAndAParagraphOnTheBackOfEachOneExplainingWhatEachOneWasToBeUsedAsEvidenceAgainstUs
-		syncPos = weDidntFindOneUntilWeCameToASideRoadAndOffTheSideOfTheSideRoadThereWasAnotherFifteenFootCliffAndAtTheBottomOfTheCliffThereWasAnotherPileOfGarbageAndWeDecidedThatOneBigPileIsBetterThanTwoLittlePilesAndRatherThanBringThatOneUpWeDecidedToThrowOursDown;
+		syncPos = posToSync;
 		if(!isLocalPlayer)
 		{
 			transform.position = syncPos;

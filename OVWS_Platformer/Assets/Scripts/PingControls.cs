@@ -43,7 +43,7 @@ public class PingControls : NetworkBehaviour {
                         RpcSpawnPing(destination);
 					}
 					else if (isClient) {
-						Instantiate(ping, new Vector3(destination.x, destination.y, -1.5f), Quaternion.identity);
+						Instantiate(ping, new Vector3(destination.x, destination.y, 1.0f), Quaternion.identity);
 						CmdSpawnPing(destination);
 					}
 				}

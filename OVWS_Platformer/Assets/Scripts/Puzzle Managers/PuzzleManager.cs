@@ -14,15 +14,16 @@ public class PuzzleManager : MonoBehaviour {
 		switchOneStatus = switchOne.GetComponent<SwitchBehavior> ();
 		switchTwoStatus = switchTwo.GetComponent<SwitchBehavior> ();
 	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		if (!switchOneStatus.puzzleSolved && switchOneStatus.activated && switchTwoStatus.activated)
-		{
-			switchOneStatus.solvePuzzle();
-			switchTwoStatus.solvePuzzle();
-			movingPlatform.transform.position = finalPlatformPos;
-		}
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!switchOneStatus.puzzleSolved && switchOneStatus.activated && switchTwoStatus.activated)
+        {
+            switchOneStatus.solvePuzzle();
+            switchTwoStatus.solvePuzzle();
+        }
+        if (switchOneStatus.puzzleSolved)
+            movingPlatform.transform.position = Vector3.MoveTowards(movingPlatform.transform.position, finalPlatformPos, Time.deltaTime * 2.0f);
+    }
 }

@@ -15,7 +15,7 @@ public class PuzzleManager7 : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		initialPos1 = movingPlatform1.transform.position;
-		downPos1 = new Vector3(initialPos1.x, initialPos1.y - 32.0f, initialPos1.z);
+		downPos1 = new Vector3(initialPos1.x, initialPos1.y - 33.0f, initialPos1.z);
 		rightPos1 = new Vector3(initialPos1.x + 20.0f, initialPos1.y, initialPos1.z);
 		initialPos2 = movingPlatform2.transform.position;
 		upPos2 = new Vector3(initialPos2.x, initialPos2.y + 14.0f, initialPos2.z);
@@ -71,12 +71,7 @@ public class PuzzleManager7 : MonoBehaviour {
 		{
 			targetPos2 = initialPos2;
 		}
-
-
-		float lerpRate1 = 1.0f - (Mathf.Abs(targetPos1.magnitude - currentPos1.magnitude)/50.0f);
-		movingPlatform1.transform.position = Vector3.Lerp(currentPos1, targetPos1, Time.deltaTime * lerpRate1 * 2.0f);
-
-		float lerpRate2 = 1.0f - (Mathf.Abs(targetPos2.magnitude - currentPos2.magnitude)/50.0f);
-		movingPlatform2.transform.position = Vector3.Lerp(currentPos2, targetPos2, Time.deltaTime * lerpRate2 * 2.0f);
+		movingPlatform1.transform.position = Vector3.MoveTowards(currentPos1, targetPos1, Time.deltaTime * 10);
+		movingPlatform2.transform.position = Vector3.MoveTowards(currentPos2, targetPos2, Time.deltaTime * 10);
 	}
 }

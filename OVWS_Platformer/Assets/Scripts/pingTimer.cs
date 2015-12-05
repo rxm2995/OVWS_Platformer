@@ -4,7 +4,7 @@ using System.Collections;
 public class pingTimer : MonoBehaviour {
 
 	private float startTime;
-	private float duration = 5;
+	private float duration = 4.5f;
 	void Start () {
 		startTime = Time.time;
 	}
