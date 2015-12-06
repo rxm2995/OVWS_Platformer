@@ -74,9 +74,11 @@ public class SwitchBehavior : NetworkBehaviour
                 {
                     activated = true;
                     solveIndicator.color = activeColor;
-                }
-                if(isLocalPlayer)
-                    CmdSyncActivatedValue(activated);
+				}
+				if (isLocalPlayer)
+				{
+					CmdSyncActivatedValue(activated);
+				}
             }
         }
     }
@@ -97,7 +99,9 @@ public class SwitchBehavior : NetworkBehaviour
                     solveIndicator.color = inactiveColor;
                 }
                 if (isLocalPlayer)
+				{
                     CmdSyncActivatedValue(activated);
+				}
             }
         }
     }

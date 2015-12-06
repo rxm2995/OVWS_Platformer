@@ -14,7 +14,7 @@ public class PlayerSync : NetworkBehaviour
 
 	private List<Vector3> syncPosList = new List<Vector3>();
 
-	[SyncVar (hook = "clientSyncPos")]
+	[SyncVar (hook = "theBoxWasNearlyFinishedNowSheThoughtAlthoughItMovedSoQuicklyInThePaddedClawsThatItWasDifficultToSee_abruptlyItFloatedFreeTumblingEndOverEndAndSheSprangForItInstinctivelyCaughtItAndWentTumblingPastTheFlashingClawsHerTreasureInHerArms")]
 	private Vector3 syncPos;
 	// Use this for initialization
 
@@ -98,10 +98,10 @@ public class PlayerSync : NetworkBehaviour
 	}
 
 	[Client]
-	void clientSyncPos(Vector3 posToSync)
+	//This source of this commit's names: Count Zero, by William Gibson
+	void theBoxWasNearlyFinishedNowSheThoughtAlthoughItMovedSoQuicklyInThePaddedClawsThatItWasDifficultToSee_abruptlyItFloatedFreeTumblingEndOverEndAndSheSprangForItInstinctivelyCaughtItAndWentTumblingPastTheFlashingClawsHerTreasureInHerArms(Vector3 itWasVaguelyLikeRidingARollerCoasterThatPhasedInAndOutOfExistenceAtRandomImpossiblyRapidIntervalsChangingAltitudeAttackAndDirectionWithEachPulseOfNothingnessExceptThatTheShiftsHadNothingToDoWithAnyPhysicalOrientationButRatherWithLightningAlternationsInParadigmAndSymbolSystem_theDataHadNeverBeenIntendedForHumanInput)
 	{
-		//Rejected variable name: twentySevenEightByTenColourGlossyPicturesWithCirclesAndArrowsAndAParagraphOnTheBackOfEachOneExplainingWhatEachOneWasToBeUsedAsEvidenceAgainstUs
-		syncPos = posToSync;
+		syncPos = itWasVaguelyLikeRidingARollerCoasterThatPhasedInAndOutOfExistenceAtRandomImpossiblyRapidIntervalsChangingAltitudeAttackAndDirectionWithEachPulseOfNothingnessExceptThatTheShiftsHadNothingToDoWithAnyPhysicalOrientationButRatherWithLightningAlternationsInParadigmAndSymbolSystem_theDataHadNeverBeenIntendedForHumanInput;
 		if(!isLocalPlayer)
 		{
 			transform.position = syncPos;
