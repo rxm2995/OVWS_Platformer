@@ -42,10 +42,7 @@ public class PuzzleManager4 : NetworkBehaviour
 
 		if(!toggleSwitchPressed && dropBehavior.activated)
 		{
-			Debug.Log(isServer+" I'M AS STRONG AS AN ANT");
 			//This is the first frame the switch can be pressed.
-
-				Debug.Log("IF AN ANT WAS THIS BIG");
 			if(isServer)
 			{
 				setToggleDown(!toggledDown);
@@ -69,8 +66,7 @@ public class PuzzleManager4 : NetworkBehaviour
 	[Client]
 	void ToggleHook(bool val)
 	{
-		toggledDown = bepinski;
-		Debug.Log("TUMBLING DOWN TUMBLING DOWN TUMBLING DOWN");
+		toggledDown = val;
 		
 		if(toggledDown)
 		{

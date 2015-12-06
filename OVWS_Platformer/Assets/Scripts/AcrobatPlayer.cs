@@ -44,7 +44,6 @@ public class AcrobatPlayer : Player
 			{
 				if (onWall && canWallJump && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 				{
-					Debug.Log("Wall Jumped");
 					persistentVelocity.y = jumpForce/jumpDecayRate;
 					persistentVelocity.x = (1.4f * wallDir * jumpForce)/(jumpDecayRate * 2);
 					transform.position = oldPos;
@@ -54,7 +53,6 @@ public class AcrobatPlayer : Player
 				}
 				else if (canAirJump && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 				{
-					Debug.Log("Air Jumped");
 					persistentVelocity.y = jumpForce/jumpDecayRate;
 					transform.position = oldPos;
 					canAirJump = false;
