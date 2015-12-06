@@ -13,7 +13,7 @@ public class PuzzleManager4 : NetworkBehaviour
 	private bool toggleSwitchPressed;
 	private float timeSinceButtonPress, secondsToFall;
 
-	[SyncVar (hook="zarboople")]
+	[SyncVar (hook="ToggleHook")]
 	private bool toggledDown;
 
 	// Use this for initialization
@@ -31,7 +31,7 @@ public class PuzzleManager4 : NetworkBehaviour
 		timeSinceButtonPress = 0;
 		toggleSwitchPressed = false;
 
-		zarboople(toggledDown);
+		ToggleHook(toggledDown);
 	}
 	
 	// Update is called once per frame
