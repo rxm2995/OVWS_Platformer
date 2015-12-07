@@ -4,6 +4,7 @@ using System.Collections;
 public class PuzzleManager2 : MonoBehaviour {
 
 	public Vector3 doorInitialPosition;
+	public Vector3 doorFinalPosition;
 	public GameObject finalDoor;
 	public GameObject switchOne;
 	public GameObject switchTwo;
@@ -23,11 +24,11 @@ public class PuzzleManager2 : MonoBehaviour {
 	{
 		if(switchTwoStatus.activated || switchOneStatus.activated)
 		{
-			finalDoor.transform.position = new Vector3(doorInitialPosition.x, doorInitialPosition.y + 2, doorInitialPosition.z);
+			finalDoor.transform.position = Vector3.MoveTowards(finalDoor.transform.position, doorFinalPosition, Time.deltaTime);
 		}
 		else
 		{
-			finalDoor.transform.position = doorInitialPosition;
+			finalDoor.transform.position = Vector3.MoveTowards(finalDoor.transform.position, doorInitialPosition, Time.deltaTime);
 		}
 	}
 }
