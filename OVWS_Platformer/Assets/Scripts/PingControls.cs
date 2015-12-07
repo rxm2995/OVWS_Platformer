@@ -10,6 +10,12 @@ public class PingControls : NetworkBehaviour {
 	private bool cameraDragging;
 	private Vector3 clickPosition;
     private Vector3 playerCameraStartPos;
+	public int pingCount;
+	private int pingLimit;
+	private bool pingOverload;
+	private GUIStyle overloadStyle, pingHUD;
+	private float overloadStartTime;
+	private float overloadDuration;
 
     [Command]
     void CmdSpawnPing(Vector3 destination)
@@ -26,25 +32,60 @@ public class PingControls : NetworkBehaviour {
 	void Start () {
 		cameraDragging = false;
 		controls = GameObject.Find("Game Manager").GetComponent<ControlManager>();
+		pingCount = 0;
+		pingLimit = 5;
+		pingOverload = false;
+		overloadDuration = 6f;
+
+		overloadStyle = new GUIStyle ();
+		overloadStyle.normal.textColor = new Color (210, 0, 0);
+		overloadStyle.fontStyle = FontStyle.Bold;
+		overloadStyle.fontSize = 40;
+		pingHUD = new GUIStyle ();
+		pingHUD.normal.textColor = new Color (0, 200, 255);
+		pingHUD.fontStyle = FontStyle.Bold;
+		pingHUD.fontSize = 25;
+
+
 	}
 
 	void Update () {
 		if (isLocalPlayer) {
-		
+
+			// Manage Ping Overload
+			if (pingOverload) {
+				if (Time.time > overloadStartTime + overloadDuration) {
+					pingOverload = false;
+					pingCount = 0;
+				}
+			}
+
 			// Add Ping with RMB
 			if (Input.GetKeyDown (controls.GetControl(PlayerActions.SpawnPing))) {
 				if (cameraDragging)
 				{
-					clickPosition = Input.mousePosition;
-					Vector3 destination = playerCamera.ScreenPointToRay(clickPosition).GetPoint(10);
-
-					if (isServer)
+					if (!pingOverload) 
 					{
-                        RpcSpawnPing(destination);
-					}
-					else if (isClient) {
-						Instantiate(ping, new Vector3(destination.x, destination.y, 1.0f), Quaternion.identity);
-						CmdSpawnPing(destination);
+						pingCount ++;
+						if (pingCount > pingLimit)
+						{
+							pingOverload = true; 
+							overloadStartTime = Time.time;
+						}
+						else
+						{
+							clickPosition = Input.mousePosition;
+							Vector3 destination = playerCamera.ScreenPointToRay(clickPosition).GetPoint(10);
+							
+							if (isServer)
+							{
+								RpcSpawnPing(destination);
+							}
+							else if (isClient) {
+								Instantiate(ping, new Vector3(destination.x, destination.y, 1.0f), Quaternion.identity);
+								CmdSpawnPing(destination);
+							}
+						}
 					}
 				}
 			}
@@ -89,7 +130,7 @@ public class PingControls : NetworkBehaviour {
 					GetComponent<StrongPlayer>().maxSpeed = 4;
 					GetComponent<StrongPlayer>().jumpForce = 1.25f;
 
-                    //reset player camera position
+                    //reset player camera position			//CONSIDER CAMERA PAN BACK UPON RESET ----------------------------------------------
                     //playerCamera.transform.position = playerCameraStartPos;
                     playerCamera.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
                     playerCamera.transform.localPosition = new Vector3(0, 0, -10);
@@ -120,6 +161,15 @@ public class PingControls : NetworkBehaviour {
                 playerCamera.transform.Translate(destination.x, destination.y, 0f);
             }
             
+		}
+	}
+
+	void OnGUI() {
+		if (pingOverload) {
+			GUI.Label (new Rect (50, (Screen.height - 140), 50, 20), "PING OVERLOAD", overloadStyle);
+		}
+		if (cameraDragging) {
+			GUI.Label (new Rect (50, (Screen.height - 80), 50, 20), "PING AND CAMERA DRAG ENABLED", pingHUD);
 		}
 	}
 }
