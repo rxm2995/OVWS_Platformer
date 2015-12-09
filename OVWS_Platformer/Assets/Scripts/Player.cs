@@ -71,8 +71,8 @@ public class Player : MonoBehaviour {
 		//Debug.Log ("Vel X: " + velocity.x);
 		//Debug.Log (Mathf.Floor(Mathf.Sqrt((velocity.x * velocity.x) + (charControl.velocity.y * charControl.velocity.y))));
 		float velMag = Mathf.Sqrt((velocity.x * velocity.x) + (charControl.velocity.y * charControl.velocity.y));
-		if(velMag > 0 && velMag > 10) localCam.fieldOfView += .6f;
-		else localCam.fieldOfView -= .6f;
+		if(velMag > 0 && velMag > 15) localCam.fieldOfView += .3f;
+		else localCam.fieldOfView -= .45f;
 		//if(velMag > 0 && localCam.fieldOfView > velMag*10) localCam.fieldOfView = velMag*10;
 		if(localCam.fieldOfView > maxFOV) localCam.fieldOfView = maxFOV;
 		else if(localCam.fieldOfView < minFOV) localCam.fieldOfView = minFOV;
