@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 public class StrongPlayer : Player
 {
 	public float speedModifier = 1.0f;
-	public float maxSpeedModifier = 5.0f;
+	public float maxSpeedModifier = 4.0f;
 	public float minSpeedModifier = 1.0f;
 	//public float sprintModifier = 2.0f;
 	[SerializeField]
