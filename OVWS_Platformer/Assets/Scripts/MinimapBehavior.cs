@@ -7,6 +7,7 @@ public class MinimapBehavior : MonoBehaviour {
 	private Camera thisCamera;
 	float lastScreenHeight;
 	float lastScreenWidth;
+	Player playerRef;
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +20,7 @@ public class MinimapBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if(lastScreenWidth != Screen.width || lastScreenHeight != Screen.height)
 		{
 			lastScreenWidth = Screen.width;
