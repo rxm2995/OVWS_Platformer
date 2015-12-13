@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class ControlMenu : NetworkBehaviour {
 
 	bool menuOn;
-	public GameObject menuHolder;
+	private GameObject menuHolder;	
 
 	void Start () {
+		menuHolder = GameObject.Find("Control GO Holder");
+		//menuHolder.SetActive (false);
 		menuOn = false;
-		menuHolder = GameObject.Find ("Menu Holder");
-		menuHolder.SetActive (false);
 	}
 
 	void Update () {
