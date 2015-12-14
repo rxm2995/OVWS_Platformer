@@ -9,9 +9,11 @@ public class ControlMenu : NetworkBehaviour {
 	private GameObject menuHolder;	
 
 	void Start () {
-		menuHolder = GameObject.Find("Control GO Holder");
-		//menuHolder.SetActive (false);
-		menuOn = false;
+		if (isLocalPlayer) {
+			menuHolder = GameObject.Find("Control GO Holder");
+			menuHolder.SetActive (false);
+			menuOn = false;
+		}
 	}
 
 	void Update () {

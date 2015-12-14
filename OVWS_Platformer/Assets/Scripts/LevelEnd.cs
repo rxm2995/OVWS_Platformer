@@ -10,6 +10,8 @@ public class LevelEnd : NetworkBehaviour
 	CustomNetworkManager netManager;
 	int playersAtEnd;
 
+	public GameObject menuHolder;
+
 	void Start ()
 	{
 		playersAtEnd = 0;
@@ -20,6 +22,9 @@ public class LevelEnd : NetworkBehaviour
 		// activates new scene when all players gather on this object
 		if (playersAtEnd == 2)
 		{
+			//Fix Control Menu
+			menuHolder.SetActive(true);	
+
 			//Application.LoadLevel(1);
 			netManager.ServerChangeScene(nextLevel);
 		}
