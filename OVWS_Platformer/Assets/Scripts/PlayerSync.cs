@@ -41,6 +41,14 @@ public class PlayerSync : NetworkBehaviour
 			gameObject.GetComponent<AcrobatPlayer>().enabled = false;
 			gameObject.GetComponent<StrongPlayer>().enabled = false;
 		}
+
+		GetComponent<NetworkAnimator> ().SetParameterAutoSend (0, true);
+	}
+
+	public override void PreStartClient ()
+	{
+		base.PreStartClient ();
+		GetComponent<NetworkAnimator> ().SetParameterAutoSend (0, true);
 	}
 	
 	// Update is called once per frame

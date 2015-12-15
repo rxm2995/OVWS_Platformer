@@ -29,12 +29,18 @@ public class Player : MonoBehaviour {
 	
 	protected Vector3 persistentVelocity;
 	private bool rageQuit = false;
+
+	protected Animator animCont;
+	protected GameObject robotMesh;
 	
 	// Use this for initialization
 	public virtual void Start ()
 	{
 		charControl = gameObject.GetComponent<CharacterController> ();
 		controls = GameObject.Find("Game Manager").GetComponent<ControlManager>();
+
+		animCont = gameObject.GetComponent<Animator> ();
+		robotMesh = this.transform.FindChild ("OVWSCharEngAnim").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -43,15 +49,31 @@ public class Player : MonoBehaviour {
 		Vector3 firstPos = transform.position;
 
 		Vector3 velocity = Vector3.zero;
-		
+
 		//Input handling
 		if (Input.GetKey (controls.GetControl(PlayerActions.MoveLeft)))
 		{
 			velocity.x += -1 * maxSpeed;// * Time.deltaTime;
+			robotMesh.transform.localEulerAngles = new Vector3(0, 90, 0);
+
+			if (onGround) {
+				animCont.SetInteger("animState", 1);
+			}
+			else {
+				animCont.SetInteger("animState", 2);
+			}
 		}
 		if (Input.GetKey (controls.GetControl(PlayerActions.MoveRight)))
 		{
 			velocity.x += maxSpeed;// * Time.deltaTime;
+			robotMesh.transform.localEulerAngles = new Vector3(0, -90, 0);
+
+			if (onGround) {
+				animCont.SetInteger("animState", 1);
+			}
+			else {
+				animCont.SetInteger("animState", 2);
+			}
 		}
 		if(Input.GetKeyDown(controls.GetControl(PlayerActions.Ragequit)) || rageQuit)
 		{
@@ -61,6 +83,15 @@ public class Player : MonoBehaviour {
 		if (onGround && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 		{
 			persistentVelocity.y = jumpForce;
+		}
+		if (Input.anyKey == false) {
+
+			if (onGround) {
+				animCont.SetInteger("animState", 0);
+			}
+			else {
+				animCont.SetInteger("animState", 2);
+			}
 		}
 
 		//Jump arc handling
