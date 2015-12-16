@@ -26,8 +26,6 @@ public class PuzzleManager : MonoBehaviour {
 			switchTwoStatus.solvePuzzle();
 
 			movingPlatform.GetComponent<AudioSource> ().PlayOneShot (doorOpening, 0.8F);
-			
-			print ("PuzzleSolved! ");
         }
         if (switchOneStatus.puzzleSolved)
             movingPlatform.transform.position = Vector3.MoveTowards(movingPlatform.transform.position, finalPlatformPos, Time.deltaTime * 2.0f);

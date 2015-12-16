@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 	public float jumpDecayRate = 0.8f;
 	
 	private float minYValue = -100;
-	
+
 	protected bool onGround;
 	protected Vector3 velocity;
 	protected Vector3 acceleration;
@@ -39,11 +39,16 @@ public class Player : MonoBehaviour {
 	public AudioClip footStep3;
 	public AudioClip footStep4;
 
+	public AudioClip footStepFull;
+
 	public AudioClip jumpStart;
 	public AudioClip jumpLand;
 
+	public AudioClip death;
+	private bool madeDeathSound = false;
+
 	public AudioSource audioOut;
-	
+
 	// Use this for initialization
 	public virtual void Start ()
 	{
@@ -71,6 +76,10 @@ public class Player : MonoBehaviour {
 
 			if (onGround) {
 				animCont.SetInteger("animState", 1);
+				audioOut.clip = footStepFull;
+				if (!audioOut.isPlaying) {
+					audioOut.Play ();
+				}
 			}
 			else {
 				animCont.SetInteger("animState", 2);
@@ -83,6 +92,10 @@ public class Player : MonoBehaviour {
 
 			if (onGround) {
 				animCont.SetInteger("animState", 1);
+				audioOut.clip = footStepFull;
+				if (!audioOut.isPlaying) {
+					audioOut.Play ();
+				}
 			}
 			else {
 				animCont.SetInteger("animState", 2);
@@ -95,12 +108,14 @@ public class Player : MonoBehaviour {
 		}
 		if (onGround && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 		{
+			audioOut.Stop();
 			audioOut.PlayOneShot(jumpStart, 0.7F);
 			persistentVelocity.y = jumpForce;
 		}
 		if (Input.anyKey == false) {
 
 			if (onGround) {
+				audioOut.Stop();
 				animCont.SetInteger("animState", 0);
 			}
 			else {
@@ -131,12 +146,21 @@ public class Player : MonoBehaviour {
 		
 		//Locking movement on Z axis
 		transform.position = new Vector3(transform.position.x, transform.position.y, rageQuit ? transform.position.z : 0);
-		
-		if (transform.position.y < minYValue)
+
+		//Corrects for delay in death sound effect. Kinda hacky. 
+		if (transform.position.y < minYValue + 10)
 		{
-			rageQuit = false;
-			//If we're here, the player must have fallen off the screen. Return them to start.
-			transform.position = new Vector3(0, 0, 0);
+			if (!madeDeathSound) {
+				audioOut.PlayOneShot(death, 0.7F);
+				madeDeathSound = true;
+			}
+
+			if (transform.position.y < minYValue) {
+				rageQuit = false;
+				//If we're here, the player must have fallen off the screen. Return them to start.
+				transform.position = new Vector3(0, 0, 0);
+				madeDeathSound = false;
+			}
 		}
 		sync.localVelocity = (transform.position-firstPos)/Time.deltaTime;
 	}

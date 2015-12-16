@@ -29,6 +29,11 @@ public class PuzzleManager2 : MonoBehaviour {
 		else
 		{
 			finalDoor.transform.position = Vector3.MoveTowards(finalDoor.transform.position, doorInitialPosition, Time.deltaTime);
+
+		}
+
+		if (finalDoor.transform.position == doorFinalPosition || finalDoor.transform.position == doorInitialPosition) {
+
 		}
 	}
 }

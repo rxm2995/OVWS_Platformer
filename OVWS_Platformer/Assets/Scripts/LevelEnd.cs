@@ -10,18 +10,23 @@ public class LevelEnd : NetworkBehaviour
 	CustomNetworkManager netManager;
 	int playersAtEnd;
 
+	private AudioSource audioOut;
+	public AudioClip levelEnd;
+
 	public GameObject menuHolder;
 
 	void Start ()
 	{
 		playersAtEnd = 0;
 		netManager = GameObject.FindGameObjectWithTag("NetManager").GetComponent<CustomNetworkManager>();
+		audioOut = GetComponent<AudioSource> ();
 	}
 
 	void Update () {
 		// activates new scene when all players gather on this object
 		if (playersAtEnd == 2)
 		{
+			audioOut.PlayOneShot(levelEnd, 0.7F);
 			//Fix Control Menu
 			//menuHolder.SetActive(true);	
 
