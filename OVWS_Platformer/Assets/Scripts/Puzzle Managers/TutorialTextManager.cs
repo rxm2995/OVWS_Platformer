@@ -10,6 +10,7 @@ public class TutorialTextManager : MonoBehaviour {
 		controlManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ControlManager>();
 		controlManager.GetControl(PlayerActions.Jump);
 		tutorialText.text = "Controls! \n" +
+			"Control Menu: P \n" +
 			"Jump: " + controlManager.GetControl(PlayerActions.Jump) + "\n" +
 			"Move Left: " + controlManager.GetControl(PlayerActions.MoveLeft) + "\n" +
 			"Move Right: " + controlManager.GetControl(PlayerActions.MoveRight) + "\n";

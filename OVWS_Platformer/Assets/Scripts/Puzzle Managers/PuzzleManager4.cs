@@ -4,6 +4,10 @@ using UnityEngine.Networking;
 
 public class PuzzleManager4 : NetworkBehaviour
 {
+	[SerializeField]
+	TextMesh tutorialText;
+	ControlManager controlManager;
+
 	public GameObject dropSwitch, floorSwitch;
 	public GameObject togglePlatform, loweringPlatform, dropFloor;
 	public Vector3 toggleUpPos, toggleDownPos, lowerEndPos, lowerEndScl;
@@ -19,6 +23,11 @@ public class PuzzleManager4 : NetworkBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		controlManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ControlManager>();
+		controlManager.GetControl(PlayerActions.Jump);
+		tutorialText.text = "Feeling Stuck? \n" +
+			"Try hitting " + controlManager.GetControl (PlayerActions.Ragequit);
+
 		secondsToFall = 4;
 		dropBehavior = dropSwitch.GetComponent<SwitchBehavior> ();
 		floorBehavior = floorSwitch.GetComponent<SwitchBehavior> ();
