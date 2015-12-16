@@ -38,6 +38,7 @@ public class PlayerSync : NetworkBehaviour
 		if (isLocalPlayer)
 		{
 			gameObject.GetComponentInChildren<Camera>().enabled = true;
+			gameObject.transform.GetChild(2).GetComponent<Camera>().enabled = true;
 		}
 		else
 		{
