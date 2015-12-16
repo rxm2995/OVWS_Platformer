@@ -23,7 +23,7 @@ public class LevelEnd : NetworkBehaviour
 		if (playersAtEnd == 2)
 		{
 			//Fix Control Menu
-			menuHolder.SetActive(true);	
+			//menuHolder.SetActive(true);	
 
 			//Application.LoadLevel(1);
 			netManager.ServerChangeScene(nextLevel);

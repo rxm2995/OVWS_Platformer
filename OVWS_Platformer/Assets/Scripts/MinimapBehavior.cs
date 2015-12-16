@@ -11,9 +11,10 @@ public class MinimapBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		panel = GameObject.FindGameObjectWithTag ("Minimap Panel").GetComponent<RectTransform>();
 		thisCamera = GetComponent<Camera>();
-		thisCamera.aspect = (16f/9f);
-		panel.sizeDelta = new Vector2(thisCamera.aspect * Screen.width * .575f, thisCamera.aspect * Screen.height * .575f); 
+		thisCamera.aspect = (Screen.width/Screen.height);
+		panel.sizeDelta = new Vector2(thisCamera.aspect * Screen.width * .800f, thisCamera.aspect * Screen.height * .800f); 
 		lastScreenWidth = Screen.width;
 		lastScreenHeight = Screen.height;
 	}
@@ -25,8 +26,8 @@ public class MinimapBehavior : MonoBehaviour {
 		{
 			lastScreenWidth = Screen.width;
 			lastScreenHeight = Screen.height;
-			thisCamera.aspect = (16f/9f);
-			panel.sizeDelta = new Vector2(thisCamera.aspect * Screen.width * .575f, thisCamera.aspect * Screen.height * .575f); 
+			thisCamera.aspect = (Screen.width/Screen.height);
+			panel.sizeDelta = new Vector2(thisCamera.aspect * Screen.width * .800f, thisCamera.aspect * Screen.height * .800f); 
 		}
 	}
 }
