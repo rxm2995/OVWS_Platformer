@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 1a87ab28ddc62f242a4799329f4c1318
-timeCreated: 1450202033
+guid: 8b703a746cea0f74484c170f10a6d815
+timeCreated: 1450262072
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -47,14 +47,6 @@ ModelImporter:
     100078: toes.L_end
     100080: toes.R
     100082: toes.R_end
-    100084: Area
-    100086: Area.001
-    100088: Camera
-    100090: Circle
-    100092: Cube
-    100094: Cube.002
-    100096: Lamp
-    100098: Plane
     400000: arm_elbow_IK.L
     400002: arm_elbow_IK.L_end
     400004: arm_elbow_Ik.R
@@ -97,38 +89,16 @@ ModelImporter:
     400078: toes.L_end
     400080: toes.R
     400082: toes.R_end
-    400084: Area
-    400086: Area.001
-    400088: Camera
-    400090: Circle
-    400092: Cube
-    400094: Cube.002
-    400096: Lamp
-    400098: Plane
-    2300000: Circle
-    2300002: Cube
-    2300004: Cube.002
-    2300006: Plane
-    3300000: Circle
-    3300002: Cube
-    3300004: Cube.002
-    3300006: Plane
     4300000: Cube.001
-    4300002: Plane
-    4300004: Cube.002
-    4300006: Circle
-    4300008: Cube
     7400000: run
-    7400002: root|Cube.001Action.001
-    7400004: root|fall
-    7400006: root|idle
-    7400008: root|idle.001
-    7400010: root|idle.002
-    7400012: root|idle.003
-    7400014: root|Jump
-    7400016: root|run
-    7400018: root|run.001
-    7400020: Cube.001|Cube.001Action.001
+    7400002: root|airJump
+    7400004: root|Cube.001Action.001
+    7400006: root|fall
+    7400008: root|idle
+    7400010: root|Jump
+    7400012: root|run
+    7400014: root|wallJump
+    7400016: Cube.001|Cube.001Action.001
     9500000: //RootNode
     13700000: Cube.001
   materials:
@@ -161,8 +131,118 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Cube.001
+        weight: 1
+      - path: root
+        weight: 1
+      - path: root/root 1
+        weight: 1
+      - path: root/root 1/arm_elbow_IK.L
+        weight: 1
+      - path: root/root 1/arm_elbow_IK.L/arm_elbow_IK.L_end
+        weight: 1
+      - path: root/root 1/arm_elbow_Ik.R
+        weight: 1
+      - path: root/root 1/arm_elbow_Ik.R/arm_elbow_Ik.R_end
+        weight: 1
+      - path: root/root 1/arm_IK.L
+        weight: 1
+      - path: root/root 1/arm_IK.L/arm_IK.L_end
+        weight: 1
+      - path: root/root 1/arm_IK.R
+        weight: 1
+      - path: root/root 1/arm_IK.R/arm_IK.R_end
+        weight: 1
+      - path: root/root 1/body
+        weight: 1
+      - path: root/root 1/body/arm_upper.L
+        weight: 1
+      - path: root/root 1/body/arm_upper.L/arm_lower.L
+        weight: 1
+      - path: root/root 1/body/arm_upper.L/arm_lower.L/hand.L
+        weight: 1
+      - path: root/root 1/body/arm_upper.L/arm_lower.L/hand.L/hand.L_end
+        weight: 1
+      - path: root/root 1/body/arm_upper.R
+        weight: 1
+      - path: root/root 1/body/arm_upper.R/arm_lower.R
+        weight: 1
+      - path: root/root 1/body/arm_upper.R/arm_lower.R/hand.R
+        weight: 1
+      - path: root/root 1/body/arm_upper.R/arm_lower.R/hand.R/hand.R_end
+        weight: 1
+      - path: root/root 1/body/leg_upper.L
+        weight: 1
+      - path: root/root 1/body/leg_upper.L/leg_lower.L
+        weight: 1
+      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L
+        weight: 1
+      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L/toes.L
+        weight: 1
+      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L/toes.L/toes.L_end
+        weight: 1
+      - path: root/root 1/body/leg_upper.R
+        weight: 1
+      - path: root/root 1/body/leg_upper.R/leg_lower.R
+        weight: 1
+      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R
+        weight: 1
+      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R/toes.R
+        weight: 1
+      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R/toes.R/toes.R_end
+        weight: 1
+      - path: root/root 1/body/neck
+        weight: 1
+      - path: root/root 1/body/neck/head
+        weight: 1
+      - path: root/root 1/body/neck/head/head_end
+        weight: 1
+      - path: root/root 1/leg_Ik.L
+        weight: 1
+      - path: root/root 1/leg_Ik.L/leg_Ik.L_end
+        weight: 1
+      - path: root/root 1/leg_IK.R
+        weight: 1
+      - path: root/root 1/leg_IK.R/leg_IK.R_end
+        weight: 1
+      - path: root/root 1/leg_knee_IK.L
+        weight: 1
+      - path: root/root 1/leg_knee_IK.L/leg_knee_IK.L_end
+        weight: 1
+      - path: root/root 1/leg_knee_IK.R
+        weight: 1
+      - path: root/root 1/leg_knee_IK.R/leg_knee_IK.R_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: root|airJump
+      takeName: root|airJump
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -592,336 +672,6 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: root|idle.001
-      takeName: root|idle.001
-      firstFrame: 0
-      lastFrame: 21
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Cube.001
-        weight: 1
-      - path: root
-        weight: 1
-      - path: root/root 1
-        weight: 1
-      - path: root/root 1/arm_elbow_IK.L
-        weight: 1
-      - path: root/root 1/arm_elbow_IK.L/arm_elbow_IK.L_end
-        weight: 1
-      - path: root/root 1/arm_elbow_Ik.R
-        weight: 1
-      - path: root/root 1/arm_elbow_Ik.R/arm_elbow_Ik.R_end
-        weight: 1
-      - path: root/root 1/arm_IK.L
-        weight: 1
-      - path: root/root 1/arm_IK.L/arm_IK.L_end
-        weight: 1
-      - path: root/root 1/arm_IK.R
-        weight: 1
-      - path: root/root 1/arm_IK.R/arm_IK.R_end
-        weight: 1
-      - path: root/root 1/body
-        weight: 1
-      - path: root/root 1/body/arm_upper.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L/hand.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L/hand.L/hand.L_end
-        weight: 1
-      - path: root/root 1/body/arm_upper.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R/hand.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R/hand.R/hand.R_end
-        weight: 1
-      - path: root/root 1/body/leg_upper.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L/toes.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L/toes.L/toes.L_end
-        weight: 1
-      - path: root/root 1/body/leg_upper.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R/toes.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R/toes.R/toes.R_end
-        weight: 1
-      - path: root/root 1/body/neck
-        weight: 1
-      - path: root/root 1/body/neck/head
-        weight: 1
-      - path: root/root 1/body/neck/head/head_end
-        weight: 1
-      - path: root/root 1/leg_Ik.L
-        weight: 1
-      - path: root/root 1/leg_Ik.L/leg_Ik.L_end
-        weight: 1
-      - path: root/root 1/leg_IK.R
-        weight: 1
-      - path: root/root 1/leg_IK.R/leg_IK.R_end
-        weight: 1
-      - path: root/root 1/leg_knee_IK.L
-        weight: 1
-      - path: root/root 1/leg_knee_IK.L/leg_knee_IK.L_end
-        weight: 1
-      - path: root/root 1/leg_knee_IK.R
-        weight: 1
-      - path: root/root 1/leg_knee_IK.R/leg_knee_IK.R_end
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: root|idle.002
-      takeName: root|idle.002
-      firstFrame: 0
-      lastFrame: 21
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Cube.001
-        weight: 1
-      - path: root
-        weight: 1
-      - path: root/root 1
-        weight: 1
-      - path: root/root 1/arm_elbow_IK.L
-        weight: 1
-      - path: root/root 1/arm_elbow_IK.L/arm_elbow_IK.L_end
-        weight: 1
-      - path: root/root 1/arm_elbow_Ik.R
-        weight: 1
-      - path: root/root 1/arm_elbow_Ik.R/arm_elbow_Ik.R_end
-        weight: 1
-      - path: root/root 1/arm_IK.L
-        weight: 1
-      - path: root/root 1/arm_IK.L/arm_IK.L_end
-        weight: 1
-      - path: root/root 1/arm_IK.R
-        weight: 1
-      - path: root/root 1/arm_IK.R/arm_IK.R_end
-        weight: 1
-      - path: root/root 1/body
-        weight: 1
-      - path: root/root 1/body/arm_upper.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L/hand.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L/hand.L/hand.L_end
-        weight: 1
-      - path: root/root 1/body/arm_upper.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R/hand.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R/hand.R/hand.R_end
-        weight: 1
-      - path: root/root 1/body/leg_upper.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L/toes.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L/toes.L/toes.L_end
-        weight: 1
-      - path: root/root 1/body/leg_upper.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R/toes.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R/toes.R/toes.R_end
-        weight: 1
-      - path: root/root 1/body/neck
-        weight: 1
-      - path: root/root 1/body/neck/head
-        weight: 1
-      - path: root/root 1/body/neck/head/head_end
-        weight: 1
-      - path: root/root 1/leg_Ik.L
-        weight: 1
-      - path: root/root 1/leg_Ik.L/leg_Ik.L_end
-        weight: 1
-      - path: root/root 1/leg_IK.R
-        weight: 1
-      - path: root/root 1/leg_IK.R/leg_IK.R_end
-        weight: 1
-      - path: root/root 1/leg_knee_IK.L
-        weight: 1
-      - path: root/root 1/leg_knee_IK.L/leg_knee_IK.L_end
-        weight: 1
-      - path: root/root 1/leg_knee_IK.R
-        weight: 1
-      - path: root/root 1/leg_knee_IK.R/leg_knee_IK.R_end
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: root|idle.003
-      takeName: root|idle.003
-      firstFrame: 0
-      lastFrame: 21
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Cube.001
-        weight: 1
-      - path: root
-        weight: 1
-      - path: root/root 1
-        weight: 1
-      - path: root/root 1/arm_elbow_IK.L
-        weight: 1
-      - path: root/root 1/arm_elbow_IK.L/arm_elbow_IK.L_end
-        weight: 1
-      - path: root/root 1/arm_elbow_Ik.R
-        weight: 1
-      - path: root/root 1/arm_elbow_Ik.R/arm_elbow_Ik.R_end
-        weight: 1
-      - path: root/root 1/arm_IK.L
-        weight: 1
-      - path: root/root 1/arm_IK.L/arm_IK.L_end
-        weight: 1
-      - path: root/root 1/arm_IK.R
-        weight: 1
-      - path: root/root 1/arm_IK.R/arm_IK.R_end
-        weight: 1
-      - path: root/root 1/body
-        weight: 1
-      - path: root/root 1/body/arm_upper.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L/hand.L
-        weight: 1
-      - path: root/root 1/body/arm_upper.L/arm_lower.L/hand.L/hand.L_end
-        weight: 1
-      - path: root/root 1/body/arm_upper.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R/hand.R
-        weight: 1
-      - path: root/root 1/body/arm_upper.R/arm_lower.R/hand.R/hand.R_end
-        weight: 1
-      - path: root/root 1/body/leg_upper.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L/toes.L
-        weight: 1
-      - path: root/root 1/body/leg_upper.L/leg_lower.L/foot.L/toes.L/toes.L_end
-        weight: 1
-      - path: root/root 1/body/leg_upper.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R/toes.R
-        weight: 1
-      - path: root/root 1/body/leg_upper.R/leg_lower.R/foot.R/toes.R/toes.R_end
-        weight: 1
-      - path: root/root 1/body/neck
-        weight: 1
-      - path: root/root 1/body/neck/head
-        weight: 1
-      - path: root/root 1/body/neck/head/head_end
-        weight: 1
-      - path: root/root 1/leg_Ik.L
-        weight: 1
-      - path: root/root 1/leg_Ik.L/leg_Ik.L_end
-        weight: 1
-      - path: root/root 1/leg_IK.R
-        weight: 1
-      - path: root/root 1/leg_IK.R/leg_IK.R_end
-        weight: 1
-      - path: root/root 1/leg_knee_IK.L
-        weight: 1
-      - path: root/root 1/leg_knee_IK.L/leg_knee_IK.L_end
-        weight: 1
-      - path: root/root 1/leg_knee_IK.R
-        weight: 1
-      - path: root/root 1/leg_knee_IK.R/leg_knee_IK.R_end
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
       name: root|Jump
       takeName: root|Jump
       firstFrame: 0
@@ -1041,8 +791,8 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -1142,10 +892,10 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: root|run.001
-      takeName: root|run.001
+      name: root|wallJump
+      takeName: root|wallJump
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 11
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

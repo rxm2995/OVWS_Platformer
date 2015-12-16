@@ -50,12 +50,16 @@ public class AcrobatPlayer : Player
 					canWallJump = false;
 					onWall = false;
 					wallDir = 0;
+
+					//base.animCont.SetInteger("animState", 3);
 				}
 				else if (canAirJump && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 				{
 					persistentVelocity.y = jumpForce/jumpDecayRate;
 					transform.position = oldPos;
 					canAirJump = false;
+					
+					//base.animCont.SetInteger("animState", 4);
 				}	
 			}
 			timer += Time.deltaTime;
