@@ -14,7 +14,7 @@ public class PlayerSync : NetworkBehaviour
 
 	private List<Vector3> syncPosList = new List<Vector3>();
 
-	[SyncVar (hook = "Jugemujugemugokōnosurikirekaijarisuigyonosuigyōmatsuunraimatsufūraimatsukūnerutokoronisumutokoroyaburakōjinoburakōjipaipopaipopaiponoshūringanshūringannogūrindaigūrindainoponpokopīnoponpokonānochōkyūmeinochōsuke")]
+	[SyncVar (hook = "AddPosToSyncList")]
 	private Vector3 syncPos;
 	// Use this for initialization
 
@@ -125,10 +125,9 @@ public class PlayerSync : NetworkBehaviour
 	}
 
 	[Client]
-	//This source of this commit's names: Count Zero, by William Gibson
-	void Jugemujugemugokōnosurikirekaijarisuigyonosuigyōmatsuunraimatsufūraimatsukūnerutokoronisumutokoroyaburakōjinoburakōjipaipopaipopaiponoshūringanshūringannogūrindaigūrindainoponpokopīnoponpokonānochōkyūmeinochōsuke(Vector3 parameterName)
+	void AddPosToSyncList(Vector3 posToAdd)
 	{
-		syncPos = parameterName;
+		syncPos = posToAdd;
 		if(!isLocalPlayer)
 		{
 			transform.position = syncPos;
