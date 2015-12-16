@@ -11,9 +11,8 @@ public class AcrobatPlayer : Player
 	private float timer;
 	private Vector3 oldPos;
 
-	public AudioClip switchFlip;
-	public AudioClip switchActive;
-	public AudioClip switchSolved;
+	public AudioClip airJump;
+	public AudioClip wallJump;
 
 	public override void Start()
 	{
@@ -55,6 +54,8 @@ public class AcrobatPlayer : Player
 					onWall = false;
 					wallDir = 0;
 
+					base.audioOut.PlayOneShot(wallJump, 0.7F);
+
 					//base.animCont.SetInteger("animState", 3);
 				}
 				else if (canAirJump && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
@@ -62,6 +63,8 @@ public class AcrobatPlayer : Player
 					persistentVelocity.y = jumpForce/jumpDecayRate;
 					transform.position = oldPos;
 					canAirJump = false;
+
+					base.audioOut.PlayOneShot(airJump, 1.0F);
 					
 					//base.animCont.SetInteger("animState", 4);
 				}	

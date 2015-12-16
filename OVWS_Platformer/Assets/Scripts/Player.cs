@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(AudioSource))]
 public class Player : MonoBehaviour {
 	[SerializeField]
 	protected Camera localCam;
@@ -32,6 +33,16 @@ public class Player : MonoBehaviour {
 
 	protected Animator animCont;
 	protected GameObject robotMesh;
+
+	public AudioClip footStep1;
+	public AudioClip footStep2;
+	public AudioClip footStep3;
+	public AudioClip footStep4;
+
+	public AudioClip jumpStart;
+	public AudioClip jumpLand;
+
+	public AudioSource audioOut;
 	
 	// Use this for initialization
 	public virtual void Start ()
@@ -41,6 +52,8 @@ public class Player : MonoBehaviour {
 
 		animCont = gameObject.GetComponent<Animator> ();
 		robotMesh = this.transform.FindChild ("OVWSCharEngAnim").gameObject;
+		
+		audioOut = GetComponent<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -82,6 +95,7 @@ public class Player : MonoBehaviour {
 		}
 		if (onGround && Input.GetKeyDown (controls.GetControl(PlayerActions.Jump)))
 		{
+			audioOut.PlayOneShot(jumpStart, 0.7F);
 			persistentVelocity.y = jumpForce;
 		}
 		if (Input.anyKey == false) {
