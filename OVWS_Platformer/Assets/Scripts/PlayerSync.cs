@@ -18,6 +18,9 @@ public class PlayerSync : NetworkBehaviour
 	private Vector3 syncPos;
 	// Use this for initialization
 
+	[SyncVar (hook = "applyRotationSync")] 
+	private Quaternion syncRobMeshRot;
+
 	[SyncVar]
 	private Vector3 syncVel;
 
@@ -85,6 +88,7 @@ public class PlayerSync : NetworkBehaviour
 		if (isLocalPlayer)
 		{
 			TransmitPosition();
+			TransmitRobRotation();
 		}
 	}
 
@@ -98,11 +102,25 @@ public class PlayerSync : NetworkBehaviour
 //		else if(!isLocalPlayer && syncPosList.
 	}
 
+	[Client] 
+	void TransmitRobRotation() 
+	{
+		if (isLocalPlayer) {
+			CmdSyncRobRot(this.transform.FindChild ("OVWSCharEngAnim").gameObject.transform.rotation);
+		}
+	}
+
 	[Command]
 	void CmdSyncPosition(Vector3 posToTransmit)
 	{
 		syncPos = posToTransmit;
 		syncVel = localVelocity;
+	}
+
+	[Command]
+	void CmdSyncRobRot(Quaternion rotToTransmit) 
+	{
+		syncRobMeshRot = rotToTransmit;
 	}
 
 	[Client]
@@ -115,6 +133,16 @@ public class PlayerSync : NetworkBehaviour
 			transform.position = syncPos;
 		}
 		syncPosList.Add(syncPos);
+	}
+
+	[Client]
+	void applyRotationSync (Quaternion applyingValue)
+	{
+		syncRobMeshRot = applyingValue;
+		if (!isLocalPlayer) 
+		{
+			this.transform.FindChild ("OVWSCharEngAnim").gameObject.transform.rotation = syncRobMeshRot;
+		}
 	}
 
 	void LerpPosition ()
