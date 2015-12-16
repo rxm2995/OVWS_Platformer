@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class SwitchBehavior : NetworkBehaviour
 {
 
@@ -18,6 +19,12 @@ public class SwitchBehavior : NetworkBehaviour
 
     public bool toggle;
     public bool pressure;
+	
+	public AudioClip switchFlip;
+	public AudioClip switchActive;
+	public AudioClip switchSolved;
+
+	AudioSource audioOut;
 
     // Use this for initialization
     void Start()
@@ -25,6 +32,8 @@ public class SwitchBehavior : NetworkBehaviour
         puzzleSolved = false;
         solveIndicator = gameObject.GetComponentInChildren<Light>();
         solveIndicator.color = Color.red;
+
+		audioOut = GetComponent<AudioSource> ();
     }
 
     // Update is called once per frame
@@ -63,7 +72,9 @@ public class SwitchBehavior : NetworkBehaviour
             if (col.gameObject.tag == "Player")
             {
                 if (toggle)
-                {
+				{
+					audioOut.PlayOneShot(switchFlip, 0.6F);
+					audioOut.PlayOneShot(switchActive, 0.8F);
                     activated = !activated;
 /*                  if (activated)
                         solveIndicator.color = activeColor;
@@ -71,7 +82,9 @@ public class SwitchBehavior : NetworkBehaviour
                         solveIndicator.color = inactiveColor;*/
                 }
                 if (pressure)
-                {
+				{
+					audioOut.PlayOneShot(switchFlip, 0.6F);
+					audioOut.PlayOneShot(switchActive, 0.8F);
                     activated = true;
                     solveIndicator.color = activeColor;
 				}
@@ -108,6 +121,7 @@ public class SwitchBehavior : NetworkBehaviour
 
     public void solvePuzzle()
     {
+		audioOut.PlayOneShot (switchSolved, 0.8F);
         puzzleSolved = true;
         solveIndicator.color = solvedColor;
     }

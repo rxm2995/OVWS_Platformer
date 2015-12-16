@@ -11,6 +11,10 @@ public class AcrobatPlayer : Player
 	private float timer;
 	private Vector3 oldPos;
 
+	public AudioClip switchFlip;
+	public AudioClip switchActive;
+	public AudioClip switchSolved;
+
 	public override void Start()
 	{
 		//First player in gets Acrobat, everyone after gets Strong.
