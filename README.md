@@ -1,4 +1,19 @@
-# The Adventures of Rob and Ots (OVWS_Platformer)
-The folder named Standalone Windows Build contains a playable executable for the current state of the game. The game is designed to require two players in order to progress through the levels. A client can connect to the host by simply typing in the IP Address of the host and pressing join at the main menu.
+# The Adventures of Rob and Ots
+###### (Formerly known as OVWS_Platformer)
 
-You can find various controls while playing the game or in the main menu, as well as rebind them at any time.
+Join a friend and adventure across 8 levels of puzzle platforming fun!
+
+### Gameplay Instructions:
+The Adventures of Rob and Ots is a two-player experience. To begin a new game, select "Host Game" from the main menu. To play with a friend who is currently hosting a game, type their IP address in the main menu and click "Join Game".
+
+
+### Controls:
+(Controls can be rebound in-game, default bindings listed below)
+* **Move:** Left/Right Arrow Keys
+* **Jump:** Up Arrow
+* **Retry Level:** K
+* **Sprint (As player 2):** Left Shift
+* **Grab/Throw (As player 2):** Z
+* **Toggle advanced camera controls:** Tab
+* **Pan Camera (When advanced camera controls are enabled):** Mouse Drag
+* **Ping (When advanced camera controls are enabled):** Left Click
